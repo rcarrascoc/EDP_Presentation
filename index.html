@@ -34,6 +34,7 @@
                 return color;
             }
 
+            
             var colorsObject = {
                 'cpu_manhattan': '#FF5733',
                 'thrust_copy': '#33FF57',
@@ -51,10 +52,10 @@
             };
 
             var colors3DObject = {
-                'GPU Manhattan': "#ff0000",
-                'GPU Euclidean': "#00ff00",
-                'CPU Manhattan': "#0000ff",
-                'CPU Euclidean': "#ffff00",
+                'GPU Manhattan': "#ff5733",
+                'GPU Euclidean': "#66c2a5",
+                'CPU Manhattan': "#c2a5cf",
+                'CPU Euclidean': "#ffb366",
             };
 
             function createLineChart(canvasId, csvFilePath, colorsObject, exceptionsArray) {
@@ -358,9 +359,49 @@
                 </section>
             
                 <!-- Slide 8 -->
-                <section>
+                <section data-background-color="black" data-state="stats" >
                     <h2>Problem statement</h2>
                     <!-- Content for Problem statement -->
+                                        <div class="container">
+                        <!-- Images for GPU -->
+                        <div class="col">
+                            <video data-autoplay src="assets/videos/GrahamScan.mp4"></video>
+                            <p>non-prepocessed</p>
+                        </div>
+                        <div class="col">
+                            <video data-autoplay src="assets/videos/GrahamScan_candidates"></video>
+                            <p>prepocessed</p>
+                        </div>
+                    </div>
+                    <!-- Display the countdown timer in an element -->
+                    <p id="demo"></p>
+
+                    <script>
+//                    
+//                    window.onload = function  functionToBeExecuted(){
+//                        
+//                    
+//                        console.log("entre perra")
+//
+//                        var seconds = 0;
+//                        var el = document.getElementById('demo');
+//
+//                        function incrementSeconds() {
+//                            seconds += 1;
+//                            if (seconds < 6) {
+//                                el.innerText = "You have been here for " + seconds + " seconds.";
+//                            } else {
+//                                el.innerText = "You have been here for " + 6 + " seconds.\n You have been here for " + seconds + " seconds new";
+//                            }
+//                        }
+//
+//                       var pene = setInterval(incrementSeconds, 1000);
+//                    
+//
+//                    };
+//
+//                   
+</script>
                 </section>
             
                 <!-- Slide 9 -->
@@ -1045,7 +1086,8 @@
             center: true,
             hash: true,
             slideNumber: true,
-            slideNumber: 'c',
+            autoPlayMedia: true,
+            slideNumber: 'c/t',
             // Learn about plugins: https://revealjs.com/plugins/
             plugins: [ RevealZoom, RevealNotes, RevealSearch, RevealMarkdown, RevealHighlight, RevealMath.KaTeX ]
         });
@@ -1056,6 +1098,37 @@
 		Reveal.addEventListener( 'changeToWhiteTheme', function() {
 			document.getElementById('theme').setAttribute('href', 'dist/theme/white.css');
 		}, false );
+
+        var cancel = null;
+
+        // Set the date we're counting down to
+        
+        Reveal.on( 'slidechanged', function() {
+      //  Reveal.addEventListener( 'stats', function() {
+
+            var ind = Reveal.getIndices().h
+            console.log("entre perra")
+            if (ind === 11) {
+
+                var seconds = -2;
+                var el = document.getElementById('demo');
+
+                function incrementSeconds() {
+                    seconds += 1;
+                    if (seconds < 6) {
+                        el.innerText = "You have been here for " + seconds + " seconds.";
+                    } else {
+                        el.innerText = "You have been here for " + 6 + " seconds.\n You have been here for " + seconds + " seconds new";
+                    }
+                }
+
+                cancel = setInterval(incrementSeconds, 1000);
+            }else{
+                clearInterval(cancel);
+            }
+            
+        } );        
+        
     </script>
 	</body>
 </html>
