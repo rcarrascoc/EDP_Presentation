@@ -134,7 +134,7 @@
 		:root {
         --r-main-font-size: 30px;
     	}
-		</style>
+	</style>
 	<body>
     <div class="reveal">
         <div class="slides">
@@ -183,7 +183,7 @@
                     <h2>Why I wanna accelerate that!</h2> 
                     <div class="container">
 						<!-- Content for Why -->
-						<div class="col">
+						<div class="col" style="display: flex; align-items: center;">
 							<ul>
 								<li>Video Games</li>
 								<li>Selfdriver</li>
@@ -201,11 +201,29 @@
                 <!-- Slide 4 -->
                 <section>
                     <h2>Basic concepts</h2>
+                    <p>Convexity</p>
 					<p>Convex hull algorithms</p>
                     <p>Preprocessing</p>
                     <p>Sign Area/Volumen</p>
                     <p>GPU Architecture</p>
                     <p>GPU Programming</p>
+                </section>
+
+                
+                <!-- Slide 4 -->
+                <section>
+                    <h3>Convexity</h3>
+                    <div class="container">
+                        <!-- Images for GPU -->
+                        <div class="col" >
+                            <img src="assets/images/convex.png" alt="CUDA" width="500"/>
+                        </div>
+                        <div class="col">
+                            <p>
+                            A subset S of the plane is called convex if and only if for any pair of points $p,q \in S$ the line segment $pq$ is completely contained in $S$.
+                            </p>
+                        </div>
+                    </div>
                 </section>
 
 				<!-- Slide 5 -->
@@ -316,7 +334,7 @@
                 <section data-state=changeToWhiteTheme>
                     <h3>Preprocessing</h3>
                     <!-- Content for Preprocessing -->
-                    <img src="assets/images/preprocessing.png" alt="Thrust" width="800"/>
+                    <img src="assets/images/pre_processing.png" alt="Thrust" width="800"/>
                 </section>
 
                 <!-- Slide 5 -->
@@ -326,11 +344,23 @@
                         <!-- Images for GPU -->
                         <div class="col">
                             <p>2D</p>
+                            <p style="font-size:55%">$\vec{a} \times \vec{b} =\begin{vmatrix}
+                                a_1 & a_2 &\\
+                                b_1 & b_2
+                                \end{vmatrix}\\
+                                 = (a_1b_2-a_2b_1)
+                                $</p>
                             <img src="assets/images/right_verification.png" alt="CUDA" width="350"/>
                         </div>
                         <div class="col">
                             <p>3D</p>
-                            <img src="assets/images/Figura_1.png" alt="CUDA" width="400"/>
+                            <p style="font-size:55%">$\vec{a} \times \vec{b} =\begin{vmatrix}
+                                i & j & k\\
+                                a_1 & a_2 & a_3\\
+                                b_1 & b_2 & b_3
+                                \end{vmatrix}\\ = (a_2b_3-a_3b_2)i + (a_3b_1-a_1b_3)j+(a_1b_2-a_2b_1)k
+                                $</p>
+                            <img src="assets/images/Figura_1.png" alt="CUDA" width="320"/>
                        </div>
                     </div>
                 </section>
@@ -362,7 +392,7 @@
                 <section data-background-color="black" data-state="stats" >
                     <h2>Problem statement</h2>
                     <!-- Content for Problem statement -->
-                                        <div class="container">
+                    <div class="container">
                         <!-- Images for GPU -->
                         <div class="col">
                             <video data-autoplay src="assets/videos/GrahamScan.mp4"></video>
@@ -375,33 +405,6 @@
                     </div>
                     <!-- Display the countdown timer in an element -->
                     <p id="demo"></p>
-
-                    <script>
-//                    
-//                    window.onload = function  functionToBeExecuted(){
-//                        
-//                    
-//                        console.log("entre perra")
-//
-//                        var seconds = 0;
-//                        var el = document.getElementById('demo');
-//
-//                        function incrementSeconds() {
-//                            seconds += 1;
-//                            if (seconds < 6) {
-//                                el.innerText = "You have been here for " + seconds + " seconds.";
-//                            } else {
-//                                el.innerText = "You have been here for " + 6 + " seconds.\n You have been here for " + seconds + " seconds new";
-//                            }
-//                        }
-//
-//                       var cancel = setInterval(incrementSeconds, 1000);
-//                    
-//
-//                    };
-//
-//                   
-</script>
                 </section>
             
                 <!-- Slide 9 -->
@@ -464,7 +467,12 @@
                 <!-- Slide 15 -->
                 <section>
                     <h3>1.1 Two Dimension: Eight-side Polygon</h3>
-                    <img src="assets/images/fig_filter.png" alt="Filter" width="600"/>
+                    <img src="assets/images/fig_filter.png" alt="Filter" width="500"/>
+                    <p style="text-align: justify; font-size:50%"><b>Figure:</b> 
+                    The illustration depicts the eight-sided polygon formed by the four extreme points (red points) and four additional
+                    points C1-4 (green points)resulting from the first stage of the algorithm applied to a point cloud. Points colored in black
+                    are considered candidates for the hull, while those colored in gray are discarded in the filtering stage.
+                    </p>
                 </section>
             
                 <!-- Slide 16 -->
@@ -480,6 +488,7 @@
                         </div>
                         <div class="col">
                             <img src="assets/images/d_distance.png" alt="Distance" width="600"/>
+                            <p style="text-align: justify; font-size:50%"><b>Figure:</b> Performance of finding extreme points between Manhattan and Euclidean in logarithmic time</p>
                         </div>
                     </div>
                 </section>
@@ -488,6 +497,8 @@
                 <section>
                     <h3>1.2 Three Dimension: Twenty-four-face Polyhedron</h3>
                     <img src="assets/images/3d_filter.PNG" alt="3D Filter" width="900"/>
+                    <p style="text-align: justify; font-size:50%"><b>Figure:</b> Illustration of randomly distributed points (1000 points) following a normal distribution, showcasing the polyhedron formed by the extreme and corner
+                    in red points. </p>
                 </section>
             
                 <!-- Slide 18 -->
@@ -502,7 +513,7 @@
                             </ul>
                         </div>
                         <div class="col">
-                            <img src="assets/images/polygon.png" alt="Polygon" width="250"/>
+                            <img src="assets/images/points_polygon.png" alt="Polygon" width="250"/>
                         </div>
                     </div>
                     <img src="assets/images/array_output.png" alt="Polygon" width="800"/>
@@ -551,7 +562,7 @@
                 </section>
             
                 <!-- Slide 19 -->
-                <section>
+                <section data-background-color="black">
                     <h3>3. Computing The Convex Hull From The Candidate Points</h3>
                     <video data-autoplay src="assets/videos/GrahamScan_candidates"></video>  
                 </section>
@@ -600,16 +611,74 @@
                 <section>
                     <h6 style="text-align: justify;">Objective 2: Develop GPU preprocessing filtering techniques in two dimensions for convex hull and compare their efficiency with the state-of-the-art.</h6>
                     <h4>Our Variants</h4>
-                    <ul>
-                        <li>thrust_copy</li>
-                        <li>thrust_scan</li>
-                        <li>cub_flagged</li>
-                        <li>gpu_scan</li>
-                        <li>omp_manhattan</li>
-                        <li>omp_euclidean</li>
-                        <li>cpu_manhattan</li>
-                        <li>cpu_euclidean</li>
-                    </ul>
+                    <table style="font-size:70%;">
+                        <thead><tr>
+                            <th>Name</th>
+                            <th>Programming</th>
+                            <th>Min-Max</th>
+                            <th>Compaction</th>
+                            <th>Parallelism</th>
+                            <th>Max size supported</th>
+                        </tr></thead>
+                        <tbody>
+                        <tr>
+                            <td>thrust_copy</td>
+                            <td>Thrust</td>
+                            <td>Thust Library</td>
+                            <td>Copy function</td>
+                            <td>Yes, GPU</td>
+                            <th>1B</th>
+                        </tr>
+                        <tr>
+                            <td>thrust_scan</td>
+                            <td>Thrust</td>
+                            <td>Thust Library</td>
+                            <td>Scan based library</td>
+                            <td>Yes, GPU</td>
+                            <th>1B</th>
+                        </tr>
+                        <tr>
+                            <td>cub_flagged</td>
+                            <td>Cub</td>
+                            <td>Cub Library</td>
+                            <td>Flagged function</td>
+                            <td>Yes, GPU</td>
+                            <th>1B</th>
+                        </tr>
+                        <tr>
+                            <td>gpu_scan</td>
+                            <td>Kernel GPU</td>
+                            <td>Reduction</td>
+                            <td>Scan-based</td>
+                            <td>Yes, GPU</td>
+                            <th>More than 1B</th>
+                        </tr>
+                        <tr>
+                            <td>omp_manhattan</td>
+                            <td>Parallel CPU</td>
+                            <td>OMP reduction</td>
+                            <td>OMP scan-based</td>
+                            <td>Yes, CPU</td>
+                            <th>More than 1B</th>
+                        </tr>
+                        <tr>
+                            <td>cpu_manhattan</td>
+                            <td>Sequential CPU</td>
+                            <td>Sequential</td>
+                            <td>Sequential</td>
+                            <td>No</td>
+                            <th>More than 1B</th>
+                        </tr>
+                        <tr>
+                            <td>cpu_euclidean</td>
+                            <td>Sequential CPU</td>
+                            <td>Sequential</td>
+                            <td>Sequential</td>
+                            <td>No</td>
+                            <th>More than 1B</th>
+                        </tr>
+                    </tbody>
+                    </table>
                 </section>
 
                 <!-- Double /section to separate slides -->
@@ -634,6 +703,8 @@
                             </div>
                         </div>
                         <img src="assets/images/legend01.png" alt="Legend" width="900"/>
+                        <p style="text-align: center; font-size:50%"><b>Figure:</b> Speedup filter over the cpu_euclidean filter. For all our proposed
+                            variants implemented in GPU, CPU-sequential, and CPU-parallel.</p>
                         <script>
                             // Crear los tres gráficos
                             createLineChart('lineChart1', 'assets/data/2d_filter_normal.csv', colorsObject, []);
@@ -662,6 +733,8 @@
                             </div>
                         </div>
                         <img src="assets/images/legend01a.png" alt="Legend" width="900"/>
+                        <p style="text-align: center; font-size:50%"><b>Figure:</b> Speedup filter over the cpu_euclidean filter. For all our proposed
+                            variants implemented in GPU, CPU-sequential, and CPU-parallel.</p>
                         <script>
                             // Crear los tres gráficos
                             createLineChart('lineChart4', 'assets/data/2d_filter_normal.csv', colorsObject, ['omp_euclidean', 'omp_manhattan', 'cub_flagged', 'thrust_scan', 'gpu_scan']);
@@ -690,6 +763,8 @@
                             </div>
                         </div>
                         <img src="assets/images/legend01b.png" alt="Legend" width="900"/>
+                        <p style="text-align: center; font-size:50%"><b>Figure:</b> Speedup filter over the cpu_euclidean filter. For all our proposed
+                            variants implemented in GPU, CPU-sequential, and CPU-parallel.</p>
                         <script>
                             // Crear los tres gráficos
                             createLineChart('lineChart7', 'assets/data/2d_filter_normal.csv', colorsObject, ['thrust_copy', 'cpu_manhattan', 'omp_euclidean', 'omp_manhattan']);
@@ -718,6 +793,8 @@
                             </div>
                         </div>
                         <img src="assets/images/legend01c.png" alt="Legend" width="900"/>
+                        <p style="text-align: center; font-size:50%"><b>Figure:</b> Speedup filter over the cpu_euclidean filter. For all our proposed
+                            variants implemented in GPU, CPU-sequential, and CPU-parallel.</p>
                         <script>
                             // Crear los tres gráficos
                             createLineChart('lineChart10', 'assets/data/2d_filter_normal.csv', colorsObject, ['thrust_copy', 'gpu_scan', 'cub_flagged', 'thrust_scan', 'cpu_manhattan']);
@@ -746,6 +823,8 @@
                             </div>
                         </div>
                         <img src="assets/images/legend01.png" alt="Legend" width="900"/>
+                        <p style="text-align: center; font-size:50%"><b>Figure:</b> Speedup filter over the cpu_euclidean filter. For all our proposed
+                            variants implemented in GPU, CPU-sequential, and CPU-parallel.</p>
                         <script>
                             // Crear los tres gráficos
                             createLineChart('lineChart13', 'assets/data/2d_filter_normal.csv', colorsObject, []);
@@ -799,6 +878,8 @@
                             </div>
                         </div>
                         <img src="assets/images/legend02.png" alt="Legend" width="900"/>
+                        <p style="text-align: justify; font-size:50%"><b>Figure:</b> Speedup of our fastest filters + CGAL:convex_hull_2 over CGAL:convex_hull_2, for our fastest proposed 
+                            variants implemented on GPU, CPU-sequential, CPU-parallel.</p>
                         <script>
                             // Crear los tres gráficos
                             createLineChart('experiment2a1', 'assets/data/2d_filter_ch_normal.csv', colorsObject, []);
@@ -827,6 +908,8 @@
                             </div>
                         </div>
                         <img src="assets/images/legend02.png" alt="Legend" width="900"/>
+                        <p style="text-align: justify; font-size:50%"><b>Figure:</b> Speedup of our fastest filters + CGAL:convex_hull_2 over CGAL:convex_hull_2, for our fastest proposed 
+                            variants implemented on GPU, CPU-sequential, CPU-parallel.</p>
                         <script>
                             // Crear los tres gráficos
                             createLineChart('experiment2a2', 'assets/data/2d_filter_ch_normal.csv', colorsObject, ['cpu_manhattan', 'gpu_scan', 'omp_manhattan', 'cudachain', 'qhull']);
@@ -855,11 +938,13 @@
                             </div>
                         </div>
                         <img src="assets/images/legend02.png" alt="Legend" width="900"/>
+                        <p style="text-align: justify; font-size:50%"><b>Figure:</b> Speedup of our fastest filters + CGAL:convex_hull_2 over CGAL:convex_hull_2, for our fastest proposed 
+                            variants implemented on GPU, CPU-sequential, CPU-parallel.</p>
                         <script>
                             // Crear los tres gráficos
-                            createLineChart('experiment2a3', 'assets/data/2d_filter_ch_normal.csv', colorsObject, ['cpu_manhattan', 'gpu_scan', 'omp_manhattan', 'cudachain', 'qhull']);
-                            createLineChart('experiment2b3', 'assets/data/2d_filter_ch_uniform.csv', colorsObject, ['cpu_manhattan', 'gpu_scan', 'omp_manhattan', 'cudachain', 'qhull']);
-                            createLineChart('experiment2c3', 'assets/data/2d_filter_ch_circumference.csv', colorsObject, ['cpu_manhattan', 'gpu_scan', 'omp_manhattan', 'cudachain', 'qhull']);
+                            createLineChart('experiment2a3', 'assets/data/2d_filter_ch_normal.csv', colorsObject, []);
+                            createLineChart('experiment2b3', 'assets/data/2d_filter_ch_uniform.csv', colorsObject, []);
+                            createLineChart('experiment2c3', 'assets/data/2d_filter_ch_circumference.csv', colorsObject, []);
                         </script>  
                     </section>
                 </section>
@@ -875,8 +960,9 @@
                 <!-- Slide 32 -->
                 <section>
                     <h6 style="text-align: justify;">Objective 2: Develop GPU preprocessing filtering techniques in two dimensions for convex hull and compare their efficiency with the state-of-the-art.</h6>
-                    <canvas id="experiment3a" width="50"></canvas>
+                    <canvas id="experiment3a" height="150" width="350"></canvas>
                     <img src="assets/images/legend03.png" alt="Legend" width="900"/>
+                    <p style="text-align: justify; font-size:50%"><b>Figure:</b> Speedup of the convex hull algorithm over CGAL:convex-hull-2 for a displaced circumference varying $\rho$ between [0, 0.3], and fixed size</p>
                     <script>
                         // Crear los tres gráficos
                         createLineChart('experiment3a', 'assets/data/2d_prob_9.csv', colorsObject, []);
@@ -900,62 +986,70 @@
 
                 <!-- Slide 36 -->
                <!-- /section -->
-               <section  data-transition="fade">
-                    <h6 style="text-align: justify;">Objective 2: Develop GPU preprocessing filtering techniques in two dimensions for convex hull and compare their efficiency with the state-of-the-art.</h6>
-                    <div class="chart-container">
-                        <div class="container" data-background-color="aquamarine">
-                            <div class="col">
-                                <p>Normal</p>
-                                <canvas id="experiment4a1" height="310"></canvas>
-                            </div>
-                            <div class="col">
-                                <p>Uniform</p>
-                                <canvas id="experiment4b1" height="310"></canvas>
-                            </div>
-                            <div class="col">
-                                <p>Sphere</p>
-                                <canvas id="experiment4c1" height="310"></canvas>
-                            </div>
-                        </div>
-                    </div>
-                    <img src="assets/images/legend04.png" alt="Legend" width="900"/>
-                    <script>
-                        // Crear los tres gráficos
-                        createLineChart('experiment4a1', 'assets/data/3d_filter_normal.csv', colors3DObject, []);
-                        createLineChart('experiment4b1', 'assets/data/3d_filter_uniform.csv', colors3DObject, []);
-                        createLineChart('experiment4c1', 'assets/data/3d_filter_sphere.csv', colors3DObject, []);
-                    </script>  
-                </section>
-
-
-               <!-- /section -->
-               <section  data-transition="fade">
-                    <h6 style="text-align: justify;">Objective 2: Develop GPU preprocessing filtering techniques in two dimensions for convex hull and compare their efficiency with the state-of-the-art.</h6>
-                    <div class="chart-container">
-                        <div class="container" data-background-color="aquamarine">
-                            <div class="col">
-                                <p>Normal</p>
-                                <canvas id="experiment5a1" height="310"></canvas>
-                            </div>
-                            <div class="col">
-                                <p>Uniform</p>
-                                <canvas id="experiment5b1" height="310"></canvas>
-                            </div>
-                            <div class="col">
-                                <p>Sphere</p>
-                                <canvas id="experiment5c1" height="310"></canvas>
+               <section>
+                <section  data-transition="fade">
+                        <h6>Objective 3: Improve the state-of-the-art on 3D filtering for convex hull algorithms both sequential and parallel and compare he performance of the new approaches with the state-of-the-art.</h6> 
+                        <div class="chart-container">
+                            <div class="container" data-background-color="aquamarine">
+                                <div class="col">
+                                    <p>Normal</p>
+                                    <canvas id="experiment4a1" height="250"></canvas>
+                                </div>
+                                <div class="col">
+                                    <p>Uniform</p>
+                                    <canvas id="experiment4b1" height="250"></canvas>
+                                </div>
+                                <div class="col">
+                                    <p>Sphere</p>
+                                    <canvas id="experiment4c1" height="250"></canvas>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <img src="assets/images/legend05.png" alt="Legend" width="900"/>
-                    <script>
-                        // Crear los tres gráficos
-                        createLineChart('experiment5a1', 'assets/data/3d_filter_ch_normal.csv', colors3DObject, []);
-                        createLineChart('experiment5b1', 'assets/data/3d_filter_ch_uniform.csv', colors3DObject, []);
-                        createLineChart('experiment5c1', 'assets/data/3d_filter_ch_sphere.csv', colors3DObject, []);
-                    </script>  
+                        <img src="assets/images/legend04.png" alt="Legend" width="600"/>
+                        <p style="text-align: justify; font-size:50%"><b>Figure:</b> Speedup of filters using Euclidean and Manhattan distances as metrics
+                            to find extreme points in normal, uniform, and spherical distributions.</p>    
+                        <script>
+                            // Crear los tres gráficos
+                            createLineChart('experiment4a1', 'assets/data/3d_filter_normal.csv', colors3DObject, []);
+                            createLineChart('experiment4b1', 'assets/data/3d_filter_uniform.csv', colors3DObject, []);
+                            createLineChart('experiment4c1', 'assets/data/3d_filter_sphere.csv', colors3DObject, []);
+                        </script>  
+                    </section>
                 </section>
 
+                <!-- /section -->
+                <section>
+                    <section  data-transition="fade">                    
+                        <h6>Objective 3: Improve the state-of-the-art on 3D filtering for convex hull algorithms both sequential and parallel and compare he performance of the new approaches with the state-of-the-art.</h6> 
+                        <div class="chart-container">
+                            <div class="container" data-background-color="aquamarine">
+                                <div class="col">
+                                    <p>Normal</p>
+                                    <canvas id="experiment5a1" height="250"></canvas>
+                                </div>
+                                <div class="col">
+                                    <p>Uniform</p>
+                                    <canvas id="experiment5b1" height="250"></canvas>
+                                </div>
+                                <div class="col">
+                                    <p>Sphere</p>
+                                    <canvas id="experiment5c1" height="250"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                        <img src="assets/images/legend05.png" alt="Legend" width="700"/>
+                        <p style="text-align: justify; font-size:50%"><b>Figure:</b> Speedup to compute the convex hull using a preprocessing step, using
+                            the CGAL library for the hull computation, on normal, uniform, and spherical
+                            distributions</p>  
+                        <script>
+                            // Crear los tres gráficos
+                            createLineChart('experiment5a1', 'assets/data/3d_filter_ch_normal.csv', colors3DObject, []);
+                            createLineChart('experiment5b1', 'assets/data/3d_filter_ch_uniform.csv', colors3DObject, []);
+                            createLineChart('experiment5c1', 'assets/data/3d_filter_ch_sphere.csv', colors3DObject, []);
+                        </script>  
+                    </section>
+                </section>
+                
                 <!-- Slide 40 -->
                 <section>
                     <h6 style="text-align: justify;">Objective 3: Improve the state-of-the-art on 3D filtering for convex hull algorithms both sequential and parallel and compare he performance of the new approaches with the state-of-the-art.</h6>
@@ -966,7 +1060,17 @@
                 <!-- Slide 41 -->
                 <section>
                     <h3>Objective 4: Evaluate contributions of the proposed algorithms at generating Delaunay triangulations and handling dynamic scenarios.</h3>
-                    <img src="assets/images/pikachu.PNG" alt="Paper 2" width="500"/>
+                    <div class="chart-container">
+                        <div class="container" data-background-color="aquamarine">
+                            <div class="col">
+                                <img src="assets/images/pikachu.PNG" alt="Paper 2" width="500"/>
+                            </div>
+                            <div class="col">
+                                <img src="assets/images/gpolylla.png" alt="Paper 2" width="300"/>
+                                <p style="text-align: center; font-size:50%"><b>Figure:</b> Speedup GPolylla over CPU Polylla. </p>
+                            </div>
+                        </div>
+                    </div>
                     <!-- Content for Objective 4  -->            
                 </section>
             
@@ -974,7 +1078,7 @@
                 <section>
                     <h2>Summary</h2>
                     <ul>
-                        <li>GPU preprocessing filtering techniques in three dimensions for convex hull
+                        <li>GPU preprocessing filtering techniques in two dimensions for convex hull
                             <ul style="text-align: justify; font-size:80%">
                                 <li>One  CUDA kernel programmed from scratch </li>
                                 <li>Two implementations using the cub library</li>
@@ -1077,42 +1181,7 @@
                     <h1>Thanks!</h1>
                 </section>
           
-                    
-                <!-- /section -->
-                <section  data-transition="fade">
-                    <h2>Tres Gráficos de Líneas desde CSV</h2>
-                    <div class="chart-container">
-                        <div class="container" data-background-color="aquamarine">
-                            <div class="col">
-                                <canvas id="lineChart13" height="300"></canvas>
-                            </div>
-                            <div class="col">
-                                <canvas id="lineChart14" height="300"></canvas>
-                            </div>
-                            <div class="col">
-                                <canvas id="lineChart15" height="300"></canvas>
-                            </div>
-                        </div>
-                    </div>
-                    <script src="js/utils/chart.js"></script>
-                    <script src="js/utils/papaparse.min.js"></script>
-                    <script>
-                        // Crear los tres gráficos
-                        createLineChart('lineChart1', 'assets/data/ch_speedup_prob.csv', colorsObject, ['thrust_copy', 'cpu_manhattan', 'cub_flagged', 'thrust_scan', 'omp_euclidean', 'omp_manhattan']);
-                        createLineChart('lineChart2', 'assets/data/ch_speedup_prob.csv', colorsObject, ['thrust_copy', 'cpu_manhattan', 'omp_euclidean', 'omp_manhattan']);
-                        createLineChart('lineChart3', 'assets/data/ch_speedup_prob.csv', colorsObject, ['thrust_copy', 'gpu_scan', 'cub_flagged', 'thrust_scan', 'cpu_manhattan']);
-                </script>                    
-            </section>
-
-            <section  data-transition="fade">
-                <h6 style="text-align: justify;">Objective 2: Develop GPU preprocessing filtering techniques in two dimensions for convex hull and compare their efficiency with the state-of-the-art.</h6>
-                <div class="chart-container">
-                <canvas id="experiment2a1a" height="310"></canvas>
-                <script>
-                    // Crear los tres gráficos
-                    createLineChart('experiment2a1a', 'assets/data/2d_filter_ch_normal.csv', colorsObject, []);
-                </script>  
-            </section>
+                
         </div>
     </div>
 
