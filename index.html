@@ -25,33 +25,7 @@
 
         <script>        
         
-        // JavaScript function to update the active and adjacent list items
-        function updateMenuItems() {
-            const menuItems = document.querySelectorAll('.menu li');
-            const activeItem = document.querySelector('.menu li.active');
-            const activeIndex = Array.from(menuItems).indexOf(activeItem);
-
-            // Reset classes on all items
-            menuItems.forEach(item => item.classList.remove('active', 'adjacent', 'inactive'));
-
-            // Set classes on the active item and its adjacent siblings
-            if (activeIndex >= 0) {
-                menuItems[activeIndex].classList.add('active');
-                if (activeIndex > 0) menuItems[activeIndex - 1].classList.add('adjacent');
-                if (activeIndex < menuItems.length - 1) menuItems[activeIndex + 1].classList.add('adjacent');
-            }
-            
-            // Set the inactive class on all other items
-            menuItems.forEach(item => {
-                if (!item.classList.contains('active') && !item.classList.contains('adjacent')) {
-                    item.classList.add('inactive');
-                }
-            });
-        }
-
-        // Run the update function whenever the active menu item might change.
-        // You need to call this function in your JavaScript logic where the active item changes.
-        updateMenuItems();
+           
 
         
             // Función para generar colores aleatorios
@@ -205,9 +179,8 @@
     <div class="reveal">
         <div class="slides">
             
-			<!-- section -->
-  
-            <section>
+			<!-- section -->  
+            <section data-state="hide-menubar">
                 <h2>Exploring the potential of new GPU features for Convex Hull algorithm</h2>
                 <h3>Author</h3>
                 <p>Roberto Carrasco</p>
@@ -240,7 +213,7 @@
             
 
                 <!-- Slide 2 -->
-                <section>
+                <section  data-state="hide-menubar">
                     <h2>Outline</h2>
                     <ul class="menu"><ul>
                 </section>
@@ -1235,13 +1208,13 @@
                 </section>
             
                 <!-- Slide N+3 -->
-                <section>
+                <section data-state="hide-menubar">
                     <h2>Sponsored by</h2>
                     <img src="assets/images/anid_rojo_azul.png" alt="ANID" width="400"/>
                 </section>
             
                 <!-- Slide N+4 -->
-                <section>
+                <section data-state="hide-menubar">
                     <h2>Supported by</h2>                    
                     <div class="container" data-background-color="aquamarine">
 						<div class="col">
@@ -1254,7 +1227,7 @@
                 </section>
             
                 <!-- Slide N+5 -->
-                <section>
+                <section data-state="hide-menubar">
                     <h2>Hosted by</h2>
                     <div class="container" data-background-color="aquamarine">
 						<div class="col">
@@ -1306,7 +1279,7 @@
                 selectby: "id",      
                 barhtml: { 
                     //header: '<div class="menubar"><img class="logo" src="assets/images/logobw.png" width="50"></a><ul class="menu"></ul><div class="slide-number"></div></div>',
-                    footer: "<div class='menubar'><ul class='menu'></ul><div class='slide-number'></div></div>"
+                    footer: "<div class='menubar' style='background-color: #ffffff;'><ul class='menu'></ul><div class='slide-number'></div></div>"
                 },                
                 csspath: "" // "css/mycustomstyle.css"
             },
