@@ -479,8 +479,10 @@
 	      listItem.classList.remove(options.activeclass);
 	    }
 	  };
-
+/*
 	  const checkSlidesNormal = event => {
+		console.log(autoListItems)
+
 	    const index = sections.regular.indexOf(event.currentSlide);
 	    let section = mainArray[index];
 	    autoListItems.filter(listItem => {
@@ -490,6 +492,47 @@
 	      compare(listItem, section);
 	    });
 	  };
+*/
+
+	const checkSlidesNormal = event => {
+		const index = sections.regular.indexOf(event.currentSlide);
+		let section = mainArray[index];
+		
+		console.log(autoListItems);
+	
+		autoListItems.filter(listItem => {
+		compare(listItem, section);
+		});
+		manualListItems.filter(listItem => {
+		compare(listItem, section);
+		});
+	
+		// Primero, quita todas las clases para resetear el estado
+		document.querySelectorAll(`.${options.menuclass} li`).forEach(li => {
+		li.classList.remove('inactive', 'adjacent');
+		});
+	
+		// Encuentra todos los elementos li activos
+		const activeLis = document.querySelectorAll(`.${options.menuclass} li.${options.activeclass}`);
+	
+		if (activeLis.length > 0) {
+		// Para cada elemento activo, agrega la clase 'adjacent' a los elementos li previos y siguientes
+		activeLis.forEach(activeLi => {
+			const prevLi = activeLi.previousElementSibling;
+			const nextLi = activeLi.nextElementSibling;
+	
+			if (prevLi) prevLi.classList.add('adjacent');
+			if (nextLi) nextLi.classList.add('adjacent');
+		});
+	
+		// Agrega la clase 'inactive' a todos los elementos li excepto los activos y los adyacentes
+		document.querySelectorAll(`.${options.menuclass} li:not(.${options.activeclass}):not(.adjacent)`).forEach(li => {
+			li.classList.add('inactive');
+		});
+		}
+	};
+  
+	
 
 	  const checkSlidesPDF = event => {
 	    let pdfPages = selectionArray(vars.viewport, '.slides .pdf-page'); // Check if any menubar has a slide number

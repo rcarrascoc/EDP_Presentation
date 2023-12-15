@@ -23,7 +23,37 @@
         <script src="js/utils/chart.js"></script>
         <script src="js/utils/papaparse.min.js"></script>
 
-        <script>                    
+        <script>        
+        
+        // JavaScript function to update the active and adjacent list items
+        function updateMenuItems() {
+            const menuItems = document.querySelectorAll('.menu li');
+            const activeItem = document.querySelector('.menu li.active');
+            const activeIndex = Array.from(menuItems).indexOf(activeItem);
+
+            // Reset classes on all items
+            menuItems.forEach(item => item.classList.remove('active', 'adjacent', 'inactive'));
+
+            // Set classes on the active item and its adjacent siblings
+            if (activeIndex >= 0) {
+                menuItems[activeIndex].classList.add('active');
+                if (activeIndex > 0) menuItems[activeIndex - 1].classList.add('adjacent');
+                if (activeIndex < menuItems.length - 1) menuItems[activeIndex + 1].classList.add('adjacent');
+            }
+            
+            // Set the inactive class on all other items
+            menuItems.forEach(item => {
+                if (!item.classList.contains('active') && !item.classList.contains('adjacent')) {
+                    item.classList.add('inactive');
+                }
+            });
+        }
+
+        // Run the update function whenever the active menu item might change.
+        // You need to call this function in your JavaScript logic where the active item changes.
+        updateMenuItems();
+
+        
             // Función para generar colores aleatorios
             function getRandomColor(n) {
                 var letters = '0123456789ABCDEF';
@@ -155,6 +185,21 @@
   z-index: -10;
   width: 50%;
 }
+
+.menu li.inactive {
+    display: none; /* Hide inactive items */
+}
+
+.menu li.adjacent {
+    display: block; /* Show adjacent items */
+    color: grey; /* Style for adjacent items */
+}
+
+.menu li.active {
+    display: block; /* Ensure the active item is displayed */
+    color: black; /* Style for the active item */
+}
+
 	</style>
 	<body>
     <div class="reveal">
@@ -1253,7 +1298,7 @@
             autoPlayMedia: true,
             slideNumber: 'c/t',
             simplemenu: {     
-                //flat: true,                  
+                flat: true,                  
                 //scale: 0.5,   
                 menuclass: "menu",
                 activeclass: "active",
