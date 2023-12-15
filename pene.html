@@ -1,0 +1,23 @@
+
+
+<script>
+    function getActiveListItem(htmlString) {
+    // Crear un elemento temporal para facilitar la manipulación del DOM
+    var tempDiv = document.createElement('div');
+    // Insertar el string HTML en el elemento temporal
+    tempDiv.innerHTML = htmlString;
+
+    // Buscar el elemento con la clase 'active'
+    var activeListItem = tempDiv.querySelector('li.active');
+
+    // Retornar el HTML del elemento encontrado (o null si no se encuentra)
+    return activeListItem ? activeListItem.outerHTML : null;
+}
+
+// Ejemplo de uso con el string proporcionado
+var htmlString = '<li><a href="#/introduction" data-sm="Introduction">Introduction</a></li><li><a href="#/basicconcepts" data-sm="Basic concepts">Basic concepts</a></li><li><a href="#/problemstatement" data-sm="Problem statement">Problem statement</a></li><li><a href="#/relatedworks" data-sm="Related Works">Related Works</a></li><li><a href="#/algorithm" data-sm="Algorithm">Algorithm</a></li><li class="active"><a href="#/hypothesesandgoal" data-sm="Hypotheses and goal">Hypotheses and goal</a></li><li><a href="#/advancesrelatedtoeachgoal" data-sm="Advances related to each goal">Advances related to each goal</a></li><li><a href="#/summary" data-sm="Summary">Summary</a></li><li><a href="#/workplan" data-sm="Work plan">Work plan</a></li>';
+
+var activeListItemHTML = getActiveListItem(htmlString);
+console.log(activeListItemHTML);
+
+</script>

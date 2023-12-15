@@ -141,7 +141,7 @@
 			<!-- section -->
   
                 <!-- Slide 1 -->
-                <section>
+                <section  data-state="hide-menubar">
                     <h2>Exploring the potential of new GPU features for Convex Hull algorithm</h2>
                     <h3>By Roberto Carrasco</h3>
                 </section>
@@ -149,21 +149,11 @@
                 <!-- Slide 2 -->
                 <section>
                     <h2>Outline</h2>
-                    <ul>
-						<li>Introduction</li>
-						<li>Basic concepts</li>
-						<li>Problem statement</li>
-                        <li>Related Works</li>
-						<li>Algorithm</li>
-						<li>Hypotheses and goal</li>
-						<li>Advances related to each goal</li>
-						<li>Summary</li>
-						<li>Work plan</li>
-                    </ul>
+                    <ul class="menu"><ul>
                 </section>
             
                 <!-- Slide 3 -->
-                <section data-background-color="gray">
+                <section data-background-color="gray" data-name="Introduction">
                     <h2>Introduction</h2>
                     <p>What is convex hull?</p>                    
 					<div class="container">
@@ -181,7 +171,7 @@
 				
                 <!-- Slide 7 -->
                 <section data-state=changeToWhiteTheme>
-                    <h2>Why I wanna accelerate that!</h2> 
+                    <h2>Why I want to accelerate that!</h2> 
                     <div class="container">
 						<!-- Content for Why -->
 						<div class="col" style="display: flex; align-items: center;">
@@ -200,7 +190,7 @@
                 </section>
             
                 <!-- Slide 4 -->
-                <section>
+                <section data-name="Basic concepts">
                     <h2>Basic concepts</h2>
                     <p>Convexity</p>
 					<p>Convex hull algorithms</p>
@@ -390,7 +380,7 @@
                 </section>
             
                 <!-- Slide 8 -->
-                <section data-background-color="black" data-state="stats" >
+                <section data-background-color="black" data-state="stats" data-name="Problem statement">
                     <h2>Problem statement</h2>
                     <!-- Content for Problem statement -->
                     <div class="container">
@@ -408,39 +398,12 @@
                     <p id="demo"></p>
                 </section>
             
-                <!-- Slide 9 -->
-                <section>
-                    <h2>Hypotheses and goal</h2>
-                </section>
-                    
-                <!-- Slide 10 -->
-                <section>
-                    <h3>Hypotheses</h3>
-                    <ol>
-                        <li>A parallel pre-processing technique can improve the state-of-the-art on GPU-based convex hull algorithms.</li>
-                        <li>The use of the new features of modern GPUs, such as tensor cores and ray tracing cores, can speed up the state-of-the-art GPU convex hull calculation.</li>
-                    </ol>
-                </section>
-            
-                <!-- Slide 11 -->
-                <section>
-                    <h3>Main objective</h3>
-                    <p>A parallel algorithms for accelerating convex hull problems over arbitrary point sets, efficient, robust, scalable, and satisfying correctness criteria</p>
-                </section>
+                <section data-name="Related Works">
 
-                <!-- Slide 12 -->
-                <section>
-                    <h3>Specific objectives</h3>
-                    <ol>
-                        <li>Review and identify the state-of-the-art convex hull algorithms and filtering techniques.</li>
-                        <li>Develop GPU pre-processing filtering techniques in two dimensions for convex hull and compare their efficiency with the state-of-the-art.</li>
-                        <li>Improve the state-of-the-art 3D filtering for convex hull algorithms both sequential and parallel and compare the performance of the new approaches with the state-of-the-art.</li>
-                        <li>Evaluate the contributions of the proposed algorithms in generating Delaunay triangulations and handling dynamic scenarios.</li>
-                    </ol>
                 </section>
 
                 <!-- Slide 13 -->
-                <section data-background-color="black">
+                <section data-background-color="black" data-name="Algorithm">
                     <h2>Algorithm</h2>
                     <pre><code data-line-numbers>  
                     Require: Set of points
@@ -579,9 +542,42 @@
                     <p style="text-align: justify; font-size:60%">[3] Sergio Salinas-Fernandez, Roberto Carrasco-Cavieres, Nancy Hitschfeld-Kahler, <b>GPolylla: GPU-accelerated polygonal mesh generator</b></p>
                 </section>
 
+                <!-- Slide 9 -->
+                <section data-name="Hypotheses and goal">
+                    <h2>Hypotheses and goal</h2>
+                </section>
+                    
+                <!-- Slide 10 -->
+                <section>
+                    <h3>Hypotheses</h3>
+                    <ol>
+                        <li>A parallel pre-processing technique can improve the state-of-the-art on GPU-based convex hull algorithms.</li>
+                        <li>The use of the new features of modern GPUs, such as tensor cores and ray tracing cores, can speed up the state-of-the-art GPU convex hull calculation.</li>
+                    </ol>
+                </section>
+            
+                <!-- Slide 11 -->
+                <section>
+                    <h3>Main objective</h3>
+                    <p>A parallel algorithms for accelerating convex hull problems over arbitrary point sets, efficient, robust, scalable, and satisfying correctness criteria</p>
+                </section>
+
+                <!-- Slide 12 -->
+                <section>
+                    <h3>Specific objectives</h3>
+                    <ol>
+                        <li>Review and identify the state-of-the-art convex hull algorithms and filtering techniques.</li>
+                        <li>Develop GPU pre-processing filtering techniques in two dimensions for convex hull and compare their efficiency with the state-of-the-art.</li>
+                        <li>Improve the state-of-the-art 3D filtering for convex hull algorithms both sequential and parallel and compare the performance of the new approaches with the state-of-the-art.</li>
+                        <li>Evaluate the contributions of the proposed algorithms in generating Delaunay triangulations and handling dynamic scenarios.</li>
+                    </ol>
+                </section>
+
+                
+
 
                 <!-- Slide 21 -->
-                <section>
+                <section data-name="Advances related to each goal">
                     <h2>Advances and results related to each objective</h2>
 					
                 </section>
@@ -1076,7 +1072,7 @@
                 </section>
             
                 <!-- Slide 42 -->
-                <section>
+                <section data-name="Summary">
                     <h2>Summary</h2>
                     <ul>
                         <li>GPU preprocessing filtering techniques in two dimensions for convex hull
@@ -1139,7 +1135,7 @@
                 </section>
 
                 <!-- Slide 43 -->
-                <section>
+                <section data-name="Work plan">
                     <h2>Work plan</h2>
                     <img src="assets/images/gantt.png" alt="gantt" width="900"/>
                     <!-- Content for Work plan -->
@@ -1178,7 +1174,7 @@
                 </section>
 
                 <!-- Slide N+6 -->
-                <section  data-background-color="aquamarine">
+                <section  data-background-color="aquamarine" data-state="hide-menubar">
                     <h1>Thanks!</h1>
                 </section>
           
@@ -1193,9 +1189,11 @@
     <script src="plugin/markdown/markdown.js"></script>
     <script src="plugin/highlight/highlight.js"></script>
     <script src="plugin/math/math.js"></script>
-    <!-- Chart plugin -->
-    <script>
+    <script src="plugin/simplemenu/simplemenu.js"></script>
+    
 
+    <!-- Chart plugin -->
+    <script>        
         // Also available as an ES module, see:
         // https://revealjs.com/initialization/
         Reveal.initialize({
@@ -1206,9 +1204,31 @@
             slideNumber: true,
             autoPlayMedia: true,
             slideNumber: 'c/t',
-            // Learn about plugins: https://revealjs.com/plugins/
-            plugins: [ RevealZoom, RevealNotes, RevealSearch, RevealMarkdown, RevealHighlight, RevealMath.KaTeX ]
+            simplemenu: {     
+                //flat: true,                  
+                //scale: 0.5,   
+                menuclass: "menu",
+                activeclass: "active",
+                activeelement: "li",
+                selectby: "id",      
+                barhtml: { 
+                    //header: '<div class="menubar"><img class="logo" src="assets/images/logobw.png" width="50"></a><ul class="menu"></ul><div class="slide-number"></div></div>',
+                    footer: "<div class='menubar'><ul class='menu'></ul><div class='slide-number'></div></div>"
+                },                
+                csspath: "" // "css/mycustomstyle.css"
+            },
+            plugins: [
+                Simplemenu,
+                RevealZoom,
+                RevealNotes,
+                RevealSearch,
+                RevealMarkdown,
+                RevealHighlight,
+                RevealMath.KaTeX
+            ]
         });
+        //Reveal.configure({ backgroundTransition: 'zoom' })
+
 		Reveal.addEventListener( 'changeToBlackTheme', function() {
 			document.getElementById('theme').setAttribute('href', 'dist/theme/black.css');
 		}, false );
@@ -1222,8 +1242,7 @@
         // Set the date we're counting down to
         
         Reveal.on( 'slidechanged', function() {
-      //  Reveal.addEventListener( 'stats', function() {
-
+        //  Reveal.addEventListener( 'stats', function() {
             var ind = Reveal.getIndices().h
             console.log("entre perra")
             if (ind === 11) {
