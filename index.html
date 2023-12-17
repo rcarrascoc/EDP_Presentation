@@ -147,33 +147,32 @@
             z-index: 0; /* Adjust this value as needed */
         }
         .logo {
-        height: 50px;
+            height: 50px;
         }
         .left {
-  float: left;
-  width: 50%;
-  z-index: -10;
-}
-.right {
-  float: right;
-  z-index: -10;
-  width: 50%;
-}
+            float: left;
+            width: 50%;
+            z-index: -10;
+        }
+        .right {
+            float: right;
+            z-index: -10;
+            width: 50%;
+        }
 
-.menu li.inactive {
-    display: none; /* Hide inactive items */
-}
+        .menu li.inactive {
+            display: none; /* Hide inactive items */
+        }
 
-.menu li.adjacent {
-    display: block; /* Show adjacent items */
-    color: grey; /* Style for adjacent items */
-}
+        .menu li.adjacent {
+            display: block; /* Show adjacent items */
+            color: grey; /* Style for adjacent items */
+        }
 
-.menu li.active {
-    display: block; /* Ensure the active item is displayed */
-    color: black; /* Style for the active item */
-}
-
+        .menu li.active {
+            display: block; /* Ensure the active item is displayed */
+            color: black; /* Style for the active item */
+        }
 	</style>
 	<body>
     <div class="reveal">
@@ -237,10 +236,10 @@
 				
                 <!-- Slide 7 -->
                 <section data-state=changeToWhiteTheme>
-                    <h2>Why I want to accelerate that!</h2> 
-                    <div class="container">
+                    <h2>My motivation</h2> 
+                    <div class="container" style="display: flex; align-items: center;">
 						<!-- Content for Why -->
-						<div class="col" style="display: flex; align-items: center;">
+						<div class="col">
 							<ul>
 								<li>Video Games</li>
 								<li>Selfdriver</li>
@@ -275,7 +274,7 @@
                         <div class="col" >
                             <img src="assets/images/convex.png" alt="CUDA" width="500"/>
                         </div>
-                        <div class="col">
+                        <div class="col" style="display: flex; align-items: center;">
                             <p>
                             A subset S of the plane is called convex if and only if for any pair of points $p,q \in S$ the line segment $pq$ is completely contained in $S$.
                             </p>
@@ -286,47 +285,16 @@
 				<!-- Slide 5 -->
 				<section data-state=changeToWhiteTheme>
 					<h3>Convex hull algorithms</h3>
-					<div class="container">
+					<div class="container" style="display: flex; align-items: center;">
 						<div class="col">
-							<table style="font-size:70%;">
-								<thead><tr>
-									<th>Name</th>
-									<th>2D</th>
-									<th>3D</th>
-								</tr></thead>
-								<tbody>
-								<tr>
-									<td>Naive</td>
-									<td>$O(n^3)$</td>
-									<td>$O(n^4)$</td>
-								</tr>
-								<tr>
-									<td>Gift Wrapping</td>
-									<td>$O(n h)$</td>
-									<td>$O(n F)$</td>
-								</tr>
-								<tr>
-									<td>Graham Scan</td>
-									<td>$O(n \log n)$</td>
-									<td>$No!$</td>
-								</tr>
-								<tr>
-									<td>Divide and Conquer</td>
-									<td>$O(n \log n)$</td>
-									<td>$O(n \log n)$</td>
-								</tr>
-								<tr>
-									<td>Incremental</td>
-									<td>$O(n \log n)$</td>
-									<td>$O(n^2)$</td>
-								</tr>
-								<tr>
-									<td>Quickhull</td>
-									<td>$O(n \log n),O(n^2)$</td>
-									<td>$O(n \log n),O(n^2)$</td>
-								</tr>
-							</tbody>
-							</table>
+							<ul>
+                                <li>Naive</li>
+                                <li>Gift Wrapping</li>
+                                <li>Graham Scan</li>
+                                <li>Divide and Conquer</li>
+                                <li>Incremental</li>
+                                <li>Quickhull</li>
+                            </ul>
 						</div>
 						<div class="col">
 							<img src="assets/images/gs.gif" alt="Collision" width="250"/>
@@ -338,47 +306,16 @@
 				<!-- Slide 5 -->
 				<section data-state=changeToWhiteTheme>
 					<h3>Convex hull algorithms</h3>
-					<div class="container">
+					<div class="container" style="display: flex; align-items: center;">
 						<div class="col">
-							<table style="font-size:70%;">
-								<thead><tr>
-									<th>Name</th>
-									<th>2D</th>
-									<th>3D</th>
-								</tr></thead>
-								<tbody>
-								<tr>
-									<td>Naive</td>
-									<td>$O(n^3)$</td>
-									<td>$O(n^4)$</td>
-								</tr>
-								<tr>
-									<td>Gift Wrapping</td>
-									<td>$O(n h)$</td>
-									<td>$O(n F)$</td>
-								</tr>
-								<tr>
-									<td>Graham Scan</td>
-									<td>$O(n \log n)$</td>
-									<td>$No!$</td>
-								</tr>
-								<tr>
-									<td>Divide and Conquer</td>
-									<td>$O(n \log n)$</td>
-									<td>$O(n \log n)$</td>
-								</tr>
-								<tr>
-									<td>Incremental</td>
-									<td>$O(n \log n)$</td>
-									<td>$O(n^2)$</td>
-								</tr>
-								<tr>
-									<td>Quickhull</td>
-									<td>$O(n \log n),O(n^2)$</td>
-									<td>$O(n \log n),O(n^2)$</td>
-								</tr>
-							</tbody>
-							</table>
+							<ul>
+                                <li>Naive</li>
+                                <li>Gift Wrapping</li>
+                                <li>Graham Scan</li>
+                                <li>Divide and Conquer</li>
+                                <li>Incremental</li>
+                                <li>Quickhull</li>
+                            </ul>
 						</div>
 						<div class="col">
 							<img src="assets/images/gw.gif" alt="Collision" width="250"/>
@@ -449,7 +386,7 @@
                 <section data-background-color="black" data-state="stats" data-name="Problem statement">
                     <h2>Problem statement</h2>
                     <!-- Content for Problem statement -->
-                    <div class="container">
+                    <div class="container" style="display: flex; align-items: center;">
                         <!-- Images for GPU -->
                         <div class="col">
                             <video data-autoplay src="assets/videos/GrahamScan.mp4"></video>
@@ -461,37 +398,109 @@
                         </div>
                     </div>
                     <!-- Display the countdown timer in an element -->
-                    <p id="demo"></p>
+                    <!-- p id="demo"></p -->
                 </section>
             
                 <section data-name="Related Works">
+                    <h2>Related Works</h2>
+                    <ul>
+                        <li>CPU-based filtering technique</li>
+                        <li>Parallel convex hull algorithms</li>
+                        <li>GPU-based filtering techniques</li>
+                    </ul>
+                </section>
 
+                <section>
+                    <h3>CPU-based filtering technique</h3>
+                    <div class="container" >
+                        <!-- Images for GPU -->
+                        <div class="col">
+                            <img src="assets/images/filter03.jpg" alt="CUDA" width="500"/>
+                            <p style="text-align: justify; font-size:50%">Héctor Ferrada, Cristóbal A. Navarro, and Nancy Hitschfeld. A filtering technique
+                                for fast convex hull construction in r2. Journal of Computational and Applied
+                                Mathematics, 364:112298, 2020.</p>                            
+                        </div>
+                        <div class="col">
+                            <img src="assets/images/filter02.png" alt="CUDA" width="500"/>
+                            <p style="text-align: justify; font-size:50%">Vaclav Skala, Michal Smolik, and Zuzana Majdisova. Reducing the number of
+                                points on the convex hull calculation using the polar space subdivision in e2. In
+                                2016 29th SIBGRAPI Conference on Graphics, Patterns and Images (SIBGRAPI),
+                                pages 40-47, 2016.</p>
+                        </div>
+                    </div>
+                </section>
+
+                <section>
+                    <h3>Parallel convex hull algorithms</h3>
+                    <div class="container" style="display: flex; align-items: center;">
+                        <!-- Images for GPU -->
+                        <div class="col">
+                            <img src="assets/images/qh_gpu.png" alt="CUDA" width="500"/>
+                            <p style="text-align: justify; font-size:50%"></p>                            
+                        </div>
+                        <div class="col">
+                            <ul>
+                                <li>Parallel Quick Hull [1]</li>
+                                <li>ParGeo: A Library for Parallel Computational Geometry [2] </li>
+                                <li>Randomized incremental algorithms [3]</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <ul style="font-size:60%;">
+                        <li>[1] S. Srungarapu, D. P. Reddy, K. Kothapalli, and P. J. Narayanan. Fast two dimensional
+                            convex hull on the gpu. In 2011 IEEE Workshops of International
+                            Conference on Advanced Information Networking and Applications, pages 7-12,
+                            2011.</li>
+                        <li>[2] Wang, Y., Yu, S., Dhulipala, L., Gu, Y., & Shun, J. (2022, April). ParGeo: a library for parallel computational geometry. In Proceedings of the 27th ACM SIGPLAN Symposium on Principles and Practice of Parallel Programming (pp. 450-452).</li>
+                        <li>[3] Guy E. Blelloch, Yan Gu, Julian Shun, and Yihan Sun. Parallelism in randomized
+                            incremental algorithms. J. ACM, 67(5), sep 2020.</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h3>GPU-based filtering techniques</h3>
+                    <div class="container" style="display: flex; align-items: center;">
+                        <!-- Images for GPU -->
+                        <div class="col">
+                            <img src="assets/images/filter01.png" alt="CUDA" width="500"/>
+                            <p style="text-align: justify; font-size:50%"></p>                            
+                        </div>
+                        <div class="col">                           
+                            <ul>
+                                <li>Cudachpre2d [1]</li>
+                                <li>Cudachain [2] </li>
+                                <li>Cudahull [3]</li>
+                            </ul>
+                        </div>
+                    </div>                    
+                    <ul style="font-size:60%;">
+                        <li>[1] Jiayu Qin, Gang Mei, Salvatore Cuomo, Guo Sixu, and Yixuan Li. Cudachpre2d:
+                            A straightforward preprocessing approach for accelerating 2d convex hull computations
+                            on the gpu. Concurrency and Computation Practice and Experience, 32, 04 2019.</li>
+                        <li>[2] Mei, G. CudaChain: an alternative algorithm for finding 2D convex hulls on the GPU. SpringerPlus 5, 696 (2016). https://doi.org/10.1186/s40064-016-2284-4</li>
+                        <li>[3] Ayal Stein, Eran Geva, and Jihad El-Sana. Cudahull: Fast parallel 3d convex hull
+                            on the gpu. Computers & Graphics, 36(4):265-271, 2012. Applications of Geometry
+                            Processing.</li>
+                    </ul>
                 </section>
 
                 <!-- Slide 13 -->
-                <section data-background-color="black" data-name="Algorithm">
+                <section data-name="Algorithm">
                     <h2>Algorithm</h2>
-                    <pre><code data-line-numbers>  
-                    Require: Set of points
-                    Ensure: Set of points candidate to the hull
-                        1. Finding the polygon/polyhedron
-                        2. Extracting candidate points
-                        3. Computing the convex hull from the candidate points
-                    </code></pre>
+                    <ul>
+                        <li>Finding the polygon/polyhedron</li>
+                        <li>Extracting candidate points</li>
+                        <li>Computing the convex hull from the candidate points</li>
+                    </ul>
                 </section>
             
                 <!-- Slide 14 -->
                 <section>
                     <h3>1. Finding the polygon/polyhedron</h3>
-                    <div class="container">
-                        <!-- Images for Finding the polygon/polyhedron -->
-                        <div class="col">
-                            <img src="assets/images/porygon.png" alt="Polygon" />
-                        </div>
-                        <div class="col">
-                            <img src="assets/images/porygon2.png" alt="Polygon" />
-                        </div>
-                    </div>
+                    <ul>
+                        <li>Polygon: Eight-side polygon -> 2D</li>
+                        <li>Polyhedron: Twenty-four-face polyhedron -> 3D</li>
+                    </ul>
                 </section>
             
                 <!-- Slide 15 -->
@@ -503,24 +512,6 @@
                     points C1-4 (green points)resulting from the first stage of the algorithm applied to a point cloud. Points colored in black
                     are considered candidates for the hull, while those colored in gray are discarded in the filtering stage.
                     </p>
-                </section>
-            
-                <!-- Slide 16 -->
-                <section>
-                    <h3>1.1 Two Dimension: Eight-side Polygon</h3>
-                    <div class="container">
-                        <!-- Images for Finding the polygon/polyhedron -->
-                        <div class="col">
-                            <ul>
-                                <li><p>Manhattan Distance:</p> <p>$d = |x_i + y_i + z_i|$</p></li>
-                                <li><p>Euclidean Distance:</p> <p>$d = \sqrt{x_i^2 + y_i^2 + z_i^2}$</p></li>
-                            </ul>
-                        </div>
-                        <div class="col">
-                            <img src="assets/images/d_distance.png" alt="Distance" width="600"/>
-                            <p style="text-align: justify; font-size:50%"><b>Figure:</b> Performance of finding extreme points between Manhattan and Euclidean in logarithmic time</p>
-                        </div>
-                    </div>
                 </section>
             
                 <!-- Slide 17 -->
@@ -546,7 +537,6 @@
                             <img src="assets/images/points_polygon.png" alt="Polygon" width="250"/>
                         </div>
                     </div>
-                    <img src="assets/images/array_output.png" alt="Polygon" width="800"/>
                 </section>
             
                 <!-- Slide 18 -->
@@ -565,31 +555,6 @@
                         </div>
                     </div>
                 </section>
-
-                <section>
-                    <h3>2. Extracting Candidate Points</h3>                    
-                    <div class="container" style="display: flex; align-items: center;">
-                        <!-- Images for Finding the polygon/polyhedron -->
-                        <div class="col">
-                            <ul>
-                                <li>Determine whether the point is a candidate</li>
-                                <li>Compacting the output array
-                                    <ul style="text-align: justify; font-size:80%">
-                                        <li>Thrust -> Scan and Copy functions</li>
-                                        <li>CUB -> Flagged</li>
-                                        <li>GPU -> TC Scan based in [1]</li>
-                                    </ul>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="col">
-                            <img src="assets/images/compaction.png" alt="Polygon" width="500"/>
-                        </div>
-                    </div>
-                    <p style="text-align: justify; font-size:60%">[1] Abdul Dakkak, Cheng Li, Jinjun Xiong, Isaac Gelado, and Wen-mei Hwu. Accelerating reduction and scan using tensor core units. In
-                        Proceedings of the ACM International Conference on Supercomputing, ICS '19, page 46-57, New York, NY, USA, 2019. Association for
-                        Computing Machinery. </p>
-                </section>
             
                 <!-- Slide 19 -->
                 <section data-background-color="black">
@@ -602,9 +567,8 @@
                     <h2>Publications</h2>
                     <h4 style="text-align: left">Published in</h4>
                     <p style="text-align: justify; font-size:60%">[1] Roberto Carrasco, Hector Ferrada, Cristobal A. Navarro, Nancy Hitschfeld, <b>An evaluation of GPU filters for accelerating the 2D convex hull</b>, Journal of Parallel and Distributed Computing, Volume 184, 2024, 104793, ISSN 0743-7315, https://doi.org/10.1016/j.jpdc.2023.104793.</p>
-                    <h4 style="text-align: left">Submitted to</h4>
-                    <p style="text-align: justify; font-size:60%">[2] Roberto Carrasco, Hector Ferrada, Cristobal A. Navarro, Nancy Hitschfeld, <b>GPU Preprocessing for Accelerating 3D Convex Hull Computation</b>, LATIN24.</p>
                     <h4 style="text-align: left">Writting</h4>
+                    <p style="text-align: justify; font-size:60%">[2] Roberto Carrasco, Hector Ferrada, Cristobal A. Navarro, Nancy Hitschfeld, <b>GPU Preprocessing for Accelerating 3D Convex Hull Computation</b></p>
                     <p style="text-align: justify; font-size:60%">[3] Sergio Salinas-Fernandez, Roberto Carrasco-Cavieres, Nancy Hitschfeld-Kahler, <b>GPolylla: GPU-accelerated polygonal mesh generator</b></p>
                 </section>
 
@@ -625,7 +589,7 @@
                 <!-- Slide 11 -->
                 <section>
                     <h3>Main objective</h3>
-                    <p>A parallel algorithms for accelerating convex hull problems over arbitrary point sets, efficient, robust, scalable, and satisfying correctness criteria</p>
+                    <p>To design a parallel algorithms for accelerating convex hull problems over arbitrary point sets, efficient, robust, scalable, and satisfying correctness criteria</p>
                 </section>
 
                 <!-- Slide 12 -->
@@ -645,7 +609,6 @@
                 <!-- Slide 21 -->
                 <section data-name="Advances related to each goal">
                     <h2>Advances and results related to each objective</h2>
-					
                 </section>
 
                 <!-- Slide 22 -->
@@ -660,7 +623,25 @@
                     <img src="assets/images/paper1.PNG" alt="Paper 1" width="700"/>
                     <!-- Content for Objective 2 -->
                 </section>
-            
+
+                <!-- Slide 16 -->
+                <section>
+                    <h3>Objective 2: Develop GPU preprocessing filtering techniques in two dimensions for convex hull and compare their efficiency with the state-of-the-art.</h3>
+                    <div class="container">
+                        <!-- Images for Finding the polygon/polyhedron -->
+                        <div class="col">
+                            <ul>
+                                <li><p>Manhattan Distance:</p> <p>$d = |x_i + y_i + z_i|$</p></li>
+                                <li><p>Euclidean Distance:</p> <p>$d = \sqrt{x_i^2 + y_i^2 + z_i^2}$</p></li>
+                            </ul>
+                        </div>
+                        <div class="col">
+                            <img src="assets/images/d_distance.png" alt="Distance" width="600"/>
+                            <p style="text-align: justify; font-size:50%"><b>Figure:</b> Performance of finding extreme points between Manhattan and Euclidean in logarithmic time</p>
+                        </div>
+                    </div>
+                </section>
+
                 <!-- Slide 25 -->
                 <section>
                     <h6 style="text-align: justify;">Objective 2: Develop GPU preprocessing filtering techniques in two dimensions for convex hull and compare their efficiency with the state-of-the-art.</h6>
@@ -678,67 +659,74 @@
                         <thead><tr>
                             <th>Name</th>
                             <th>Programming</th>
-                            <th>Min-Max</th>
-                            <th>Compaction</th>
-                            <th>Parallelism</th>
-                            <th>Max size supported</th>
+                            <th>Step 1</th>
+                            <th>Step 2</th>
+                            <th>Architecture</th>
+                            <th style="align-content: right;"># Points Supported</th>
                         </tr></thead>
                         <tbody>
                         <tr>
                             <td>thrust_copy</td>
                             <td>Thrust</td>
-                            <td>Thust Library</td>
-                            <td>Copy function</td>
-                            <td>Yes, GPU</td>
-                            <th>1B</th>
+                            <td>Min-Max element</td>
+                            <td>Copy</td>
+                            <td>GPU</td>
+                            <th style="align-content: center;">$2^{30}$</th>
                         </tr>
                         <tr>
                             <td>thrust_scan</td>
                             <td>Thrust</td>
-                            <td>Thust Library</td>
-                            <td>Scan based library</td>
-                            <td>Yes, GPU</td>
-                            <th>1B</th>
+                            <td>Min-Max element</td>
+                            <td>Scan + Transformation</td>
+                            <td>GPU</td>
+                            <th style="align-content: center;">$2^{30}$</th>
                         </tr>
                         <tr>
                             <td>cub_flagged</td>
-                            <td>Cub</td>
-                            <td>Cub Library</td>
-                            <td>Flagged function</td>
-                            <td>Yes, GPU</td>
-                            <th>1B</th>
+                            <td>GPU</td>
+                            <td>Min-Max Arg</td>
+                            <td>Flagged</td>
+                            <td>GPU</td>
+                            <th style="align-content: center;">$2^{30}$</th>
                         </tr>
                         <tr>
                             <td>gpu_scan</td>
                             <td>Kernel GPU</td>
                             <td>Reduction</td>
                             <td>Scan-based</td>
-                            <td>Yes, GPU</td>
-                            <th>More than 1B</th>
+                            <td>GPU</td>
+                            <th style="align-content: center;">$>2^{30}$</th>
                         </tr>
                         <tr>
+                            <td>omp_euclidean</td>
+                            <td>OMP</td>
+                            <td>Pragma Reduction</td>
+                            <td>Pragma</td>
+                            <td>CPU</td>
+                            <th style="align-content: center;">$>2^{30}$</th>
+                        <tr>
                             <td>omp_manhattan</td>
-                            <td>Parallel CPU</td>
-                            <td>OMP reduction</td>
-                            <td>OMP scan-based</td>
-                            <td>Yes, CPU</td>
-                            <th>More than 1B</th>
+                            <td>OMP</td>
+                            <td>Pragma Reduction</td>
+                            <td>Pragma</td>
+                            <td>CPU</td>
+                            <th style="align-content: center;">$>2^{30}$</th>
+                        </tr>
+                        <tr>
+                            <td>cpu_euclidean</td>
+                            <td>Sequential CPU</td>
+                            <td>Sequential</td>
+                            <td>$\emptyset$</td>
+                            <td>CPU</td>
+                            <th style="align-content: center;">$>2^{30}$</th>
                         </tr>
                         <tr>
                             <td>cpu_manhattan</td>
                             <td>Sequential CPU</td>
                             <td>Sequential</td>
                             <td>Sequential</td>
-                            <td>No</td>
-                            <th>More than 1B</th>
-                        </tr>
-                        <tr>
-                            <td>cpu_euclidean</td>
-                            <td>Sequential CPU</td>
-                            <td>Sequential</td>
-                            <td>Sequential</td>
-                            <td>No</td>
-                            <th>More than 1B</th>
+                            <td>CPU</td>
+                            <th style="align-content: center;">$>2^{30}$</th>
                         </tr>
                     </tbody>
                     </table>
