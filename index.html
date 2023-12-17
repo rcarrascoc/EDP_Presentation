@@ -489,7 +489,7 @@
                 <section data-name="Algorithm">
                     <h2>Algorithm</h2>
                     <ol type="1">
-                        <li>Finding the polygon/polyhedron</li>
+                        <li>Finding an approximate hull</li>
                         <li>Extracting candidate points</li>
                         <li>Computing the convex hull from the candidate points</li>
                     </ol>
@@ -497,7 +497,7 @@
             
                 <!-- Slide 14 -->
                 <section>
-                    <h3>1. Finding the polygon/polyhedron</h3>
+                    <h3>1. Finding an approximate hull</h3>
                     <ul>
                         <li>Polygon: Eight-side polygon -> 2D</li>
                         <li>Polyhedron: Twenty-four-face polyhedron -> 3D</li>
@@ -1102,7 +1102,7 @@
                 <section>
                     <h6 style="text-align: justify;">Objective 3: Improve the state-of-the-art on 3D filtering for convex hull algorithms both sequential and parallel and compare he performance of the new approaches with the state-of-the-art.</h6>
                     <ol>
-                        <li>Finding the Polyhedron</li>
+                        <li>Finding an approximate hull</li>
                         <li><p style="color:red;">Extracting the candidate points to hull <-- Ray Tracing... soon </p></li>
                         <li>Computing the convex hull</li>
                     </ol>
@@ -1112,13 +1112,15 @@
                 <section>
                     <h3>Objective 4: Evaluate contributions of the proposed algorithms at generating Delaunay triangulations and handling dynamic scenarios.</h3>
                     <div class="chart-container">
-                        <div class="container" data-background-color="aquamarine">
+                        <div class="container" data-background-color="aquamarine" style="display: flex; align-items: center;">
                             <div class="col">
                                 <img src="assets/images/pikachu.PNG" alt="Paper 2" width="500"/>
                             </div>
                             <div class="col">
-                                <img src="assets/images/gpolylla.png" alt="Paper 2" width="300"/>
-                                <p style="text-align: center; font-size:50%"><b>Figure:</b> Speedup GPolylla over CPU Polylla. </p>
+                                <ul>
+                                    <li>GPU polygonal meshing algorithm (GPolylla)</li>
+                                    <li>$89 \times$ faster than CPU Polylla</li>
+                                </ul>
                             </div>
                         </div>
                     </div>
