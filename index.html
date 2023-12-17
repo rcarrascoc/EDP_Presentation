@@ -256,12 +256,12 @@
             
                 <!-- Slide 4 -->
                 <section data-name="Basic concepts">
-                    <h2>Basic concepts</h2>
+                    <h2>Basic Concepts</h2>
                     <p>Convexity</p>
-					<p>Convex hull algorithms</p>
+					<p>Convex Hull Algorithms</p>
                     <p>Preprocessing</p>
                     <p>Sign Area/Volumen</p>
-                    <p>GPU Architecture</p>
+                    <p>GPU Features</p>
                     <p>GPU Programming</p>
                 </section>
 
@@ -284,7 +284,7 @@
 
 				<!-- Slide 5 -->
 				<section data-state=changeToWhiteTheme>
-					<h3>Convex hull algorithms</h3>
+					<h3>Convex Hull Algorithms</h3>
 					<div class="container" style="display: flex; align-items: center;">
 						<div class="col">
 							<ul>
@@ -305,7 +305,7 @@
 
 				<!-- Slide 5 -->
 				<section data-state=changeToWhiteTheme>
-					<h3>Convex hull algorithms</h3>
+					<h3>Convex Hull Algorithms</h3>
 					<div class="container" style="display: flex; align-items: center;">
 						<div class="col">
 							<ul>
@@ -361,7 +361,7 @@
 
                 <!-- Slide 6 -->
                 <section data-background-color="black">
-                    <h3>GPU Architecture</h3>
+                    <h3>GPU Features</h3>
                     <img src="assets/images/rtx_architecture.jpg" alt="CUDA" width="350"/>
                 </section>
 
@@ -371,7 +371,7 @@
                     <div class="container">
                         <!-- Images for GPU -->
                         <div class="col">
-                            <img src="assets/images/clogo.svg" alt="CUDA" width="160"/>
+                            <img src="assets/images/cuda_logo.png" alt="CUDA" width="600"/>
                         </div>
                         <div class="col">
                             <img src="assets/images/cub.png" alt="CUB" width="600"/>
@@ -380,25 +380,6 @@
                             <img src="assets/images/thrust.png" alt="Thrust" width="600"/>
                         </div>
                     </div>
-                </section>
-            
-                <!-- Slide 8 -->
-                <section data-background-color="black" data-state="stats" data-name="Problem statement">
-                    <h2>Problem statement</h2>
-                    <!-- Content for Problem statement -->
-                    <div class="container" style="display: flex; align-items: center;">
-                        <!-- Images for GPU -->
-                        <div class="col">
-                            <video data-autoplay src="assets/videos/GrahamScan.mp4"></video>
-                            <p>non-prepocessed</p>
-                        </div>
-                        <div class="col">
-                            <video data-autoplay src="assets/videos/GrahamScan_candidates"></video>
-                            <p>prepocessed</p>
-                        </div>
-                    </div>
-                    <!-- Display the countdown timer in an element -->
-                    <!-- p id="demo"></p -->
                 </section>
             
                 <section data-name="Related Works">
@@ -484,14 +465,34 @@
                     </ul>
                 </section>
 
+                <!-- Slide 8 -->
+                <section data-background-color="black" data-state="stats" data-name="Problem statement">
+                    <h2>Problem statement</h2>
+                    <!-- Content for Problem statement -->
+                    <div class="container" style="display: flex; align-items: center;">
+                        <!-- Images for GPU -->
+                        <div class="col">
+                            <video data-autoplay src="assets/videos/GrahamScan.mp4"></video>
+                            <p>non-prepocessed</p>
+                        </div>
+                        <div class="col">
+                            <video data-autoplay src="assets/videos/GrahamScan_candidates"></video>
+                            <p>prepocessed</p>
+                        </div>
+                    </div>
+                    <!-- Display the countdown timer in an element -->
+                    <!-- p id="demo"></p -->
+                </section>
+            
+
                 <!-- Slide 13 -->
                 <section data-name="Algorithm">
                     <h2>Algorithm</h2>
-                    <ul>
+                    <ol type="1">
                         <li>Finding the polygon/polyhedron</li>
                         <li>Extracting candidate points</li>
                         <li>Computing the convex hull from the candidate points</li>
-                    </ul>
+                    </ol>
                 </section>
             
                 <!-- Slide 14 -->
@@ -535,23 +536,6 @@
                         </div>
                         <div class="col">
                             <img src="assets/images/points_polygon.png" alt="Polygon" width="250"/>
-                        </div>
-                    </div>
-                </section>
-            
-                <!-- Slide 18 -->
-                <section>
-                    <h3>2. Extracting Candidate Points</h3>                    
-                    <div class="container" style="display: flex; align-items: center;">
-                        <!-- Images for Finding the polygon/polyhedron -->
-                        <div class="col">
-                            <ul>
-                                <li>Determine whether the point is a candidate</li>
-                                <li>Compacting the output array</li>
-                            </ul>
-                        </div>
-                        <div class="col">
-                            <img src="assets/images/compaction.png" alt="Polygon" width="500"/>
                         </div>
                     </div>
                 </section>
@@ -626,7 +610,8 @@
 
                 <!-- Slide 16 -->
                 <section>
-                    <h3>Objective 2: Develop GPU preprocessing filtering techniques in two dimensions for convex hull and compare their efficiency with the state-of-the-art.</h3>
+                    <h6 style="text-align: justify;">Objective 2: Develop GPU preprocessing filtering techniques in two dimensions for convex hull and compare their efficiency with the state-of-the-art.</h6>
+                    <h4>Distance Techniques Benchmark</h4>
                     <div class="container">
                         <!-- Images for Finding the polygon/polyhedron -->
                         <div class="col">
@@ -645,6 +630,7 @@
                 <!-- Slide 25 -->
                 <section>
                     <h6 style="text-align: justify;">Objective 2: Develop GPU preprocessing filtering techniques in two dimensions for convex hull and compare their efficiency with the state-of-the-art.</h6>
+                    <h4>Filtering Techniques Benchmark</h4>
                     <img src="assets/images/study_cases_2d.PNG" alt="drawing" width="900"/>
                     <p style="text-align: justify; font-size:60%"><b>Figure: </b>
                     Graphic representation of the distributions. The figure on the left side corresponds to a normal distribution with a mean of 1 and a standard deviation of 0.1. Next to it is a uniform distribution with a mean of 1 and a standard deviation of 0.1. Finally, the figure on the right is a circumference centered at the origin with a
@@ -737,6 +723,7 @@
                     <!-- /section -->
                     <section  data-transition="fade">
                         <h6 style="text-align: justify;">Objective 2: Develop GPU preprocessing filtering techniques in two dimensions for convex hull and compare their efficiency with the state-of-the-art.</h6>
+                        <h4>Filtering Techniques Benchmark</h4>
                         <div class="chart-container">
                             <div class="container" data-background-color="aquamarine">
                                 <div class="col">
@@ -767,6 +754,7 @@
                     <!-- /section -->
                     <section data-transition="fade">
                         <h6 style="text-align: justify;">Objective 2: Develop GPU preprocessing filtering techniques in two dimensions for convex hull and compare their efficiency with the state-of-the-art.</h6>
+                        <h4>Filtering Techniques Benchmark</h4>
                         <div class="chart-container">
                             <div class="container" data-background-color="aquamarine">
                                 <div class="col">
@@ -797,6 +785,7 @@
                     <!-- /section -->
                     <section data-transition="fade">
                         <h6 style="text-align: justify;">Objective 2: Develop GPU preprocessing filtering techniques in two dimensions for convex hull and compare their efficiency with the state-of-the-art.</h6>
+                        <h4>Filtering Techniques Benchmark</h4>
                         <div class="chart-container">
                             <div class="container" data-background-color="aquamarine">
                                 <div class="col">
@@ -827,6 +816,7 @@
                     <!-- /section -->
                     <section data-transition="fade">
                         <h6 style="text-align: justify;">Objective 2: Develop GPU preprocessing filtering techniques in two dimensions for convex hull and compare their efficiency with the state-of-the-art.</h6>
+                        <h4>Filtering Techniques Benchmark</h4>
                         <div class="chart-container">
                             <div class="container" data-background-color="aquamarine">
                                 <div class="col">
@@ -857,6 +847,7 @@
                     <!-- /section -->
                     <section  data-transition="fade">
                         <h6 style="text-align: justify;">Objective 2: Develop GPU preprocessing filtering techniques in two dimensions for convex hull and compare their efficiency with the state-of-the-art.</h6>
+                        <h4>Filtering Techniques Benchmark</h4>
                         <div class="chart-container">
                             <div class="container" data-background-color="aquamarine">
                                 <div class="col">
@@ -888,6 +879,7 @@
                 <!-- Slide 29 -->
                 <section>
                     <h6 style="text-align: justify;">Objective 2: Develop GPU preprocessing filtering techniques in two dimensions for convex hull and compare their efficiency with the state-of-the-art.</h6>
+                    <h4>Filtering + Convex Hull Algorithm Benchmark</h4>
                     <div class="chart-container">
                         <div class="container" data-background-color="aquamarine">
                             <div class="col">                                
@@ -912,6 +904,7 @@
                     <!-- /section -->
                     <section  data-transition="fade">
                         <h6 style="text-align: justify;">Objective 2: Develop GPU preprocessing filtering techniques in two dimensions for convex hull and compare their efficiency with the state-of-the-art.</h6>
+                        <h4>Filtering + Convex Hull Algorithm Benchmark</h4>
                         <div class="chart-container">
                             <div class="container" data-background-color="aquamarine">
                                 <div class="col">
@@ -942,6 +935,7 @@
                     <!-- /section -->
                     <section  data-transition="fade">
                         <h6 style="text-align: justify;">Objective 2: Develop GPU preprocessing filtering techniques in two dimensions for convex hull and compare their efficiency with the state-of-the-art.</h6>
+                        <h4>Filtering + Convex Hull Algorithm Benchmark</h4>
                         <div class="chart-container">
                             <div class="container" data-background-color="aquamarine">
                                 <div class="col">
@@ -972,6 +966,7 @@
                     <!-- /section -->
                     <section  data-transition="fade">
                         <h6 style="text-align: justify;">Objective 2: Develop GPU preprocessing filtering techniques in two dimensions for convex hull and compare their efficiency with the state-of-the-art.</h6>
+                        <h4>Filtering + Convex Hull Algorithm Benchmark</h4>
                         <div class="chart-container">
                             <div class="container" data-background-color="aquamarine">
                                 <div class="col">
@@ -1011,6 +1006,7 @@
                 <!-- Slide 32 -->
                 <section>
                     <h6 style="text-align: justify;">Objective 2: Develop GPU preprocessing filtering techniques in two dimensions for convex hull and compare their efficiency with the state-of-the-art.</h6>
+                    <h4>Filtering + Convex Hull Algorithm Benchmark</h4>
                     <canvas id="experiment3a" height="150" width="350"></canvas>
                     <img src="assets/images/legend03.png" alt="Legend" width="900"/>
                     <p style="text-align: justify; font-size:50%"><b>Figure:</b> Speedup of the convex hull algorithm over CGAL:convex-hull-2 for a displaced circumference varying $\rho$ between [0, 0.3], and fixed size</p>
@@ -1027,8 +1023,7 @@
                 </section>
 
                 <!-- Slide 35 -->
-                <section>
-                    
+                <section>                    
                     <h6 style="text-align: justify;">Objective 3: Improve the state-of-the-art on 3D filtering for convex hull algorithms both sequential and parallel and compare he performance of the new approaches with the state-of-the-art.</h6>
                     <img src="assets/images/study_cases_3d.PNG" alt="drawing" width="900"/>
                     <p style="text-align: justify; font-size:60%"><b>Figure: </b>
@@ -1040,6 +1035,7 @@
                <section>
                 <section  data-transition="fade">
                         <h6>Objective 3: Improve the state-of-the-art on 3D filtering for convex hull algorithms both sequential and parallel and compare he performance of the new approaches with the state-of-the-art.</h6> 
+                        <h4>Filtering Techniques Benchmark</h4>
                         <div class="chart-container">
                             <div class="container" data-background-color="aquamarine">
                                 <div class="col">
@@ -1072,6 +1068,7 @@
                 <section>
                     <section  data-transition="fade">                    
                         <h6>Objective 3: Improve the state-of-the-art on 3D filtering for convex hull algorithms both sequential and parallel and compare he performance of the new approaches with the state-of-the-art.</h6> 
+                        <h4>Filtering + Convex Hull Algorithm Benchmark</h4>
                         <div class="chart-container">
                             <div class="container" data-background-color="aquamarine">
                                 <div class="col">
@@ -1104,8 +1101,11 @@
                 <!-- Slide 40 -->
                 <section>
                     <h6 style="text-align: justify;">Objective 3: Improve the state-of-the-art on 3D filtering for convex hull algorithms both sequential and parallel and compare he performance of the new approaches with the state-of-the-art.</h6>
-                    <p> Ray Tracing... soon </p>
-                    <img src="assets/images/rtx.png" alt="drawing"/>
+                    <ol>
+                        <li>Finding the Polyhedron</li>
+                        <li><p style="color:red;">Extracting the candidate points to hull <-- Ray Tracing... soon </p></li>
+                        <li>Computing the convex hull</li>
+                    </ol>
                 </section>
 
                 <!-- Slide 41 -->
