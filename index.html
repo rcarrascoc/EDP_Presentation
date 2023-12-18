@@ -1163,7 +1163,7 @@
                     <div class="chart-container">
                         <div class="container" data-background-color="aquamarine" style="display: flex; align-items: center;">
                             <div class="col">
-                                <img src="assets/images/pikachu.PNG" alt="Paper 2" width="500"/>
+                                <img src="assets/images/pikachu.PNG" width="500"/>
                             </div>
                             <div class="col">
                                 <ul>
@@ -1261,35 +1261,6 @@
                 <section  data-background-color="aquamarine" data-state="hide-menubar">
                     <h1>Thanks!</h1>
                 </section>
-          
-            <section data-transition="fade">
-                <h6 style="text-align: justify;">Objective 2: Develop GPU preprocessing filtering techniques in two dimensions for convex hull and compare their efficiency with the state-of-the-art.</h6>
-                <h4>Filtering Techniques Benchmark</h4>
-                <div class="container" data-background-color="aquamarine">
-                    <div class="col">
-                        <p>Normal</p>
-                        <canvas id="lineChart40" height="300"></canvas>
-                    </div>
-                    <div class="col">
-                        <p>Uniform</p>  
-                        <canvas id="lineChart50" height="300"></canvas>
-                    </div>
-                    <div class="col">
-                        <p>Circumference</p>
-                        <canvas id="lineChart60" height="300"></canvas>
-                    </div>
-                </div>
-                <div id="legend-container" style="text-align: center;"></div>
-                <p style="text-align: center; font-size:70%"><b>Figure:</b> Speedup filter over the cpu_euclidean filter.</p> 
-                <script>
-                    document.addEventListener('DOMContentLoaded', function() {                       
-                        // Initialize the charts
-                        createLineChart2('lineChart40', 'assets/data/2d_filter_normal.csv', colorsObject, ['omp_euclidean', 'omp_manhattan', 'cub_flagged', 'thrust_scan', 'gpu_scan'], 'legend-container');
-                        createLineChart2('lineChart50', 'assets/data/2d_filter_uniform.csv', colorsObject, ['omp_euclidean', 'omp_manhattan', 'cub_flagged', 'thrust_scan', 'gpu_scan']);
-                        createLineChart2('lineChart60', 'assets/data/2d_filter_circumference.csv', colorsObject, ['omp_euclidean', 'omp_manhattan', 'cub_flagged', 'thrust_scan', 'gpu_scan']);
-                    });
-                </script>                
-            </section>
         </div>
     </div>
 
