@@ -38,28 +38,27 @@
                 return color;
             }
 
-            
             var colorsObject = {
-                'cpu_manhattan': '#FF5733',
-                'thrust_copy': '#33FF57',
-                'gpu_scan': '#5733FF',
-                'cub_flagged': '#FF3366',
-                'thrust_scan': '#33A3FF',
-                'omp_euclidean': '#FFD700',
-                'omp_manhattan': '#FF00FF',
-                'numero': '#FF4500',  // Ejemplo de color para 'numero'
-                'cgal_ch_2': '#8A2BE2',  // Ejemplo de color para 'cgal_ch_2'
-                'cgal_graham_andrew': '#3CB371',  // Ejemplo de color para 'cgal_graham_andrew'
-                'cpu_euclidean': '#9400D3',  // Ejemplo de color para 'cpu_euclidean'
-                'cudachain': '#FF6347',  // Ejemplo de color para 'cudachain'
-                'qhull': '#2E8B57'  // Ejemplo de color para 'qhull'
+                'cpu_manhattan': '#CD5C5C',  // Indian red for CPU sequential
+                'thrust_copy': '#32CD32',    // Lime green for GPU parallel
+                'gpu_scan': '#7CFC00',       // Lawn green for GPU parallel
+                'cub_flagged': '#00FF00',    // Bright green for GPU parallel
+                'thrust_scan': '#98FB98',    // Pale green for GPU parallel
+                'omp_euclidean': '#1E90FF',  // Dodger blue for CPU multicore
+                'omp_manhattan': '#6495ED',  // Cornflower blue for CPU multicore
+                'numero': '#FF4500',         // Orange red for numbers
+                'cgal_ch_2': '#8B0000',      // Dark red for CPU sequential
+                'cgal_graham_andrew': '#B22222', // Firebrick red for CPU sequential
+                'cpu_euclidean': '#FF6347',      // Tomato red for CPU sequential
+                'cudachain': '#FF6347',          // Tomato for reference
+                'qhull': '#2E8B57'               // Sea green for reference
             };
 
             var colors3DObject = {
-                'GPU Manhattan': "#ff5733",
-                'GPU Euclidean': "#66c2a5",
-                'CPU Manhattan': "#c2a5cf",
-                'CPU Euclidean': "#ffb366",
+                'GPU Manhattan': "#00FF7F",   // Spring green for GPU parallel
+                'GPU Euclidean': "#3CB371",   // Medium sea green for GPU parallel
+                'CPU Manhattan': "#1E90FF",   // Dodger blue for CPU multicore
+                'CPU Euclidean': "#4169E1",   // Royal blue for CPU multicore
             };
 
             function createLineChart(canvasId, csvFilePath, colorsObject, exceptionsArray) {
@@ -72,25 +71,24 @@
                         var datasets = labels.slice(1).map(function (label) {
                             var borderColor;
                             if (exceptionsArray.includes(label)) {
-                                // Si la etiqueta está en el arreglo de excepciones, usa color gris
-                                borderColor = '#EDEDED'; // Puedes cambiar esto al gris que prefieras
+                                borderColor = '#EDEDED'; // Color for exceptions
                             } else {
-                                // Si no es una excepción, utiliza el color del objeto o genera uno aleatorio
-                                borderColor = colorsObject[label] || getRandomColor();
+                                borderColor = colorsObject[label];
                             }
-
+            
                             return {
                                 label: label,
                                 data: result.data.map(function (row) {
                                     return row[label];
                                 }),
                                 borderColor: borderColor,
+                                backgroundColor: borderColor, // Use the same color for background as border
                                 borderWidth: 1,
                                 fill: false,
                                 pointRadius: 0 
                             };
                         });
-
+            
                         var ctx = document.getElementById(canvasId).getContext('2d');
                         new Chart(ctx, {
                             type: 'line',
@@ -105,24 +103,115 @@
                                     y: {
                                         beginAtZero: true,
                                         grid: {
-                                            display: false  // Configura display en false para ocultar la grilla
+                                            display: false // Hide the grid
                                         }
                                     },
                                     x: {
                                         grid: {
-                                            display: false  // Configura display en false para ocultar la grilla
+                                            display: false // Hide the grid
                                         }
                                     }
                                 },
                                 plugins: {
                                     legend: {
-                                        display: false
+                                        display: false, // Set to true to display the legend
+                                        labels: {
+                                            usePointStyle: true, // Use point style
+                                            padding: 20, // Optional: adjust padding
+                                            color: 'black', // Optional: text color
+                                            // Optional: configure text box color, border, etc.
+                                            generateLabels: function (chart) {
+                                                return chart.data.datasets.map(function (dataset, i) {
+                                                    return {
+                                                        text: dataset.label,
+                                                        fillStyle: dataset.backgroundColor,
+                                                        // Additional styling can go here
+                                                        lineWidth: dataset.borderWidth,
+                                                        strokeStyle: dataset.borderColor,
+                                                        // Add any other properties you need
+                                                    };
+                                                });
+                                            }
+                                        }
                                     }
                                 }
                             }
                         });
                     }
                 });
+            }
+
+            function createLineChart2(canvasId, csvFilePath, colorsObject, exceptionsArray, sharedLegendId) {
+                Papa.parse(csvFilePath, {
+                    download: true,
+                    header: true,
+                    dynamicTyping: true,
+                    complete: function (result) {
+                        var labels = Object.keys(result.data[0]);
+                        var datasets = labels.slice(1).map(function (label) {
+                            var borderColor = exceptionsArray.includes(label) ? '#EDEDED' : (colorsObject[label] || getRandomColor());
+                            return {
+                                label: label,
+                                data: result.data.map(function (row) { return row[label]; }),
+                                borderColor: borderColor,
+                                backgroundColor: borderColor,
+                                borderWidth: 1,
+                                fill: false,
+                                pointRadius: 0 
+                            };
+                        });
+            
+                        var ctx = document.getElementById(canvasId).getContext('2d');
+                        var chart = new Chart(ctx, {
+                            type: 'line',
+                            data: { labels: result.data.map(function (row) { return row[labels[0]]; }), datasets: datasets },
+                            options: {
+                                scales: {
+                                    y: {
+                                        beginAtZero: true,
+                                        grid: { display: false },
+                                        title: {
+                                            display: true,
+                                            text: 'Speedup',
+                                            font: { size: 20 }
+                                        }
+                                    },
+                                    x: {
+                                        grid: { display: false },
+                                        title: {
+                                            display: true,
+                                            text: '# Points',
+                                            font: { size: 20 }
+                                        }
+                                    }
+                                },
+                                plugins: {
+                                    legend: { display: false } // Disable individual chart legends
+                                },
+                                interaction: {
+                                    mode: 'nearest',
+                                    axis: 'x',
+                                    intersect: false
+                                }
+                            }
+                        });
+            
+                        if (sharedLegendId) {
+                            window.sharedLegend = generateSharedLegend(chart);
+                            document.getElementById(sharedLegendId).innerHTML = window.sharedLegend;
+                        }
+                    }
+                });
+            }
+    
+            function generateSharedLegend(chart) {
+                var legendHtml = chart.options.plugins.legend.labels.generateLabels(chart).map(function(label) {
+                    return '<span style="display:inline-block;margin-right:10px;">' +
+                           '<span style="background-color:' + label.fillStyle + ';width:12px;height:12px;display:inline-block;border:1px solid #000;"></span> ' +
+                           '<span style="vertical-align:middle;">' + label.text + '</span>' +
+                           '</span>';
+                }).join('');
+                return legendHtml;
             }
             
 
@@ -172,6 +261,18 @@
         .menu li.active {
             display: block; /* Ensure the active item is displayed */
             color: black; /* Style for the active item */
+        }
+
+        .chart-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start; /* Align the tops of the charts */
+            flex-wrap: nowrap; /* Prevent wrapping to a new line */
+            width: 100%; /* Full width */
+        }
+        #legend-container {
+            width: 100%; /* Full width to center the legend */
+            margin-top: 20px; /* Space above the legend */
         }
 	</style>
 	<body>
@@ -236,7 +337,7 @@
 				
                 <!-- Slide 7 -->
                 <section data-state=changeToWhiteTheme>
-                    <h2>My motivation</h2> 
+                    <h2>Why is convex hull important?</h2> 
                     <div class="container" style="display: flex; align-items: center;">
 						<!-- Content for Why -->
 						<div class="col">
@@ -257,12 +358,14 @@
                 <!-- Slide 4 -->
                 <section data-name="Basic concepts">
                     <h2>Basic Concepts</h2>
-                    <p>Convexity</p>
-					<p>Convex Hull Algorithms</p>
-                    <p>Preprocessing</p>
-                    <p>Sign Area/Volumen</p>
-                    <p>GPU Features</p>
-                    <p>GPU Programming</p>
+                    <ol>
+                        <li>Convexity</li>
+                        <li>Convex Hull Algorithms</li>
+                        <li>Preprocessing</li>
+                        <li>Sign Area/Volumen</li>
+                        <li>GPU Features</li>
+                        <li>GPU Programming</li>
+                    </ol>
                 </section>
 
                 
@@ -276,7 +379,7 @@
                         </div>
                         <div class="col" style="display: flex; align-items: center;">
                             <p>
-                            A sub S of the plane is called convex if and only if for any pair of points $p,q \in S$ the line segment $pq$ is completely contained in $S$.
+                            A set S of the plane is called convex if and only if for any pair of points $p,q \in S$ the line segment $pq$ is completely contained in $S$.
                             </p>
                         </div>
                     </div>
@@ -297,29 +400,8 @@
                             </ul>
 						</div>
 						<div class="col">
-							<img src="assets/images/gs.gif" alt="Collision" width="250"/>
-							<p style="font-size:70%;"> Graham Scan </p>
-						</div>
-					</div>
-				</section>
-
-				<!-- Slide 5 -->
-				<section data-state=changeToWhiteTheme>
-					<h3>Convex Hull Algorithms</h3>
-					<div class="container" style="display: flex; align-items: center;">
-						<div class="col">
-							<ul>
-                                <li>Naive</li>
-                                <li>Gift Wrapping</li>
-                                <li>Graham Scan</li>
-                                <li>Divide and Conquer</li>
-                                <li>Incremental</li>
-                                <li>Quickhull</li>
-                            </ul>
-						</div>
-						<div class="col">
-							<img src="assets/images/gw.gif" alt="Collision" width="250"/>
-							<p style="font-size:70%;"> Gift Wrapping </p>
+							<img src="assets/images/qh.gif" alt="Collision" width="250"/>
+							<p style="font-size:70%;"> Quick Hull </p>
 						</div>
 					</div>
 				</section>
@@ -360,12 +442,12 @@
                 </section>
 
                 <!-- Slide 6 -->
-                <section data-background-color="black">
+                <section>
                     <h3>GPU Features</h3>
                     <div class="container" style="display: flex; align-items: center;">
                         <!-- Images for GPU -->
                         <div class="col">
-                            <img src="assets/images/rtx_architecture.jpg" alt="CUDA" width="300"/>
+                            <img src="assets/images/rtx_a.png" alt="CUDA"/>
                         </div>
                         <div class="col">
                             <ul>
@@ -728,128 +810,111 @@
                 </section>
 
                 <!-- Double /section to separate slides -->
-                <section>
                     <!-- /section -->
-                    <section  data-transition="fade">
+                    <section data-transition="fade">
                         <h6 style="text-align: justify;">Objective 2: Develop GPU preprocessing filtering techniques in two dimensions for convex hull and compare their efficiency with the state-of-the-art.</h6>
                         <h4>Filtering Techniques Benchmark</h4>
-                        <div class="chart-container">
-                            <div class="container" data-background-color="aquamarine">
-                                <div class="col">
-                                    <p>Normal</p>
-                                    <canvas id="lineChart1" height="300"></canvas>
-                                </div>
-                                <div class="col">
-                                    <p>Uniform</p>
-                                    <canvas id="lineChart2" height="300"></canvas>
-                                </div>
-                                <div class="col">
-                                    <p>Circumference</p>
-                                    <canvas id="lineChart3" height="300"></canvas>
-                                </div>
+                        <div class="container" data-background-color="aquamarine">
+                            <div class="col">
+                                <p>Normal</p>
+                                <canvas id="lineChart1" height="300"></canvas>
+                            </div>
+                            <div class="col">
+                                <p>Uniform</p>
+                                <canvas id="lineChart2" height="300"></canvas>
+                            </div>
+                            <div class="col">
+                                <p>Circumference</p>
+                                <canvas id="lineChart3" height="300"></canvas>
                             </div>
                         </div>
-                        <img src="assets/images/legend01.png" alt="Legend" width="900"/>
+                        <div id="legend-lineChart1" style="text-align: center;">
                         <p style="text-align: center; font-size:70%"><b>Figure:</b> 
                             Speedup filter over the cpu_euclidean filter.</p>
                         <script>
-                            // Crear los tres gráficos
-                            createLineChart('lineChart1', 'assets/data/2d_filter_normal.csv', colorsObject, []);
-                            createLineChart('lineChart2', 'assets/data/2d_filter_uniform.csv', colorsObject, []);
-                            createLineChart('lineChart3', 'assets/data/2d_filter_circumference.csv', colorsObject, []);
-                        </script>  
+                            createLineChart2('lineChart1', 'assets/data/2d_filter_normal.csv', colorsObject, [], 'legend-lineChart1');
+                            createLineChart2('lineChart2', 'assets/data/2d_filter_uniform.csv', colorsObject, []);
+                            createLineChart2('lineChart3', 'assets/data/2d_filter_circumference.csv', colorsObject, []);
+                        </script>
                     </section>
 
                     <!-- /section -->
                     <section data-transition="fade">
                         <h6 style="text-align: justify;">Objective 2: Develop GPU preprocessing filtering techniques in two dimensions for convex hull and compare their efficiency with the state-of-the-art.</h6>
                         <h4>Filtering Techniques Benchmark</h4>
-                        <div class="chart-container">
-                            <div class="container" data-background-color="aquamarine">
-                                <div class="col">
-                                    <p>Normal</p>
-                                    <canvas id="lineChart4" height="300"></canvas>
-                                </div>
-                                <div class="col">
-                                    <p>Uniform</p>  
-                                    <canvas id="lineChart5" height="300"></canvas>
-                                </div>
-                                <div class="col">
-                                    <p>Circumference</p>
-                                    <canvas id="lineChart6" height="300"></canvas>
-                                </div>
+                        <div class="container" data-background-color="aquamarine">
+                            <div class="col">
+                                <p>Normal</p>
+                                <canvas id="lineChart4" height="300"></canvas>
+                            </div>
+                            <div class="col">
+                                <p>Uniform</p>  
+                                <canvas id="lineChart5" height="300"></canvas>
+                            </div>
+                            <div class="col">
+                                <p>Circumference</p>
+                                <canvas id="lineChart6" height="300"></canvas>
                             </div>
                         </div>
-                        <img src="assets/images/legend01a.png" alt="Legend" width="900"/>
-                        <p style="text-align: center; font-size:70%"><b>Figure:</b> 
-                            Speedup filter over the cpu_euclidean filter.</p>
+                        <div id='legend-lineChart4' style="text-align: center;">
                         <script>
-                            // Crear los tres gráficos
-                            createLineChart('lineChart4', 'assets/data/2d_filter_normal.csv', colorsObject, ['omp_euclidean', 'omp_manhattan', 'cub_flagged', 'thrust_scan', 'gpu_scan']);
-                            createLineChart('lineChart5', 'assets/data/2d_filter_uniform.csv', colorsObject, ['omp_euclidean', 'omp_manhattan', 'cub_flagged', 'thrust_scan', 'gpu_scan']);
-                            createLineChart('lineChart6', 'assets/data/2d_filter_circumference.csv', colorsObject, ['omp_euclidean', 'omp_manhattan', 'cub_flagged', 'thrust_scan', 'gpu_scan']);
+                            createLineChart2('lineChart4', 'assets/data/2d_filter_normal.csv', colorsObject, ['omp_euclidean', 'omp_manhattan', 'cub_flagged', 'thrust_scan', 'gpu_scan'], 'legend-lineChart4');
+                            createLineChart2('lineChart5', 'assets/data/2d_filter_uniform.csv', colorsObject, ['omp_euclidean', 'omp_manhattan', 'cub_flagged', 'thrust_scan', 'gpu_scan']);
+                            createLineChart2('lineChart6', 'assets/data/2d_filter_circumference.csv', colorsObject, ['omp_euclidean', 'omp_manhattan', 'cub_flagged', 'thrust_scan', 'gpu_scan']);
                         </script>                    
                     </section>
+                    
 
                     <!-- /section -->
                     <section data-transition="fade">
                         <h6 style="text-align: justify;">Objective 2: Develop GPU preprocessing filtering techniques in two dimensions for convex hull and compare their efficiency with the state-of-the-art.</h6>
                         <h4>Filtering Techniques Benchmark</h4>
-                        <div class="chart-container">
-                            <div class="container" data-background-color="aquamarine">
-                                <div class="col">
-                                    <p>Normal</p>
-                                    <canvas id="lineChart7" height="300"></canvas>
-                                </div>
-                                <div class="col">
-                                    <p>Uniform</p>
-                                    <canvas id="lineChart8" height="300"></canvas>
-                                </div>
-                                <div class="col">
-                                    <p>Circumference</p>
-                                    <canvas id="lineChart9" height="300"></canvas>
-                                </div>
+                        <div class="container" data-background-color="aquamarine">
+                            <div class="col">
+                                <p>Normal</p>
+                                <canvas id="lineChart7" height="300"></canvas>
+                            </div>
+                            <div class="col">
+                                <p>Uniform</p>
+                                <canvas id="lineChart8" height="300"></canvas>
+                            </div>
+                            <div class="col">
+                                <p>Circumference</p>
+                                <canvas id="lineChart9" height="300"></canvas>
                             </div>
                         </div>
-                        <img src="assets/images/legend01b.png" alt="Legend" width="900"/>
-                        <p style="text-align: center; font-size:70%"><b>Figure:</b> 
-                            Speedup filter over the cpu_euclidean filter.</p>
+                        <div id="legend-lineChart7" style="text-align: center;"></div>
                         <script>
-                            // Crear los tres gráficos
-                            createLineChart('lineChart7', 'assets/data/2d_filter_normal.csv', colorsObject, ['thrust_copy', 'cpu_manhattan', 'omp_euclidean', 'omp_manhattan']);
-                            createLineChart('lineChart8', 'assets/data/2d_filter_uniform.csv', colorsObject, ['thrust_copy', 'cpu_manhattan', 'omp_euclidean', 'omp_manhattan']);
-                            createLineChart('lineChart9', 'assets/data/2d_filter_circumference.csv', colorsObject, ['thrust_copy', 'cpu_manhattan', 'omp_euclidean', 'omp_manhattan']);
+                                createLineChart2('lineChart7', 'assets/data/2d_filter_normal.csv', colorsObject, ['thrust_copy', 'cpu_manhattan', 'omp_euclidean', 'omp_manhattan'],'legend-lineChart7');
+                                createLineChart2('lineChart8', 'assets/data/2d_filter_uniform.csv', colorsObject, ['thrust_copy', 'cpu_manhattan', 'omp_euclidean', 'omp_manhattan']);
+                                createLineChart2('lineChart9', 'assets/data/2d_filter_circumference.csv', colorsObject, ['thrust_copy', 'cpu_manhattan', 'omp_euclidean', 'omp_manhattan']);
                         </script>                    
                     </section>
+                    
 
                     <!-- /section -->
                     <section data-transition="fade">
                         <h6 style="text-align: justify;">Objective 2: Develop GPU preprocessing filtering techniques in two dimensions for convex hull and compare their efficiency with the state-of-the-art.</h6>
                         <h4>Filtering Techniques Benchmark</h4>
-                        <div class="chart-container">
-                            <div class="container" data-background-color="aquamarine">
-                                <div class="col">
-                                    <p>Normal</p>
-                                    <canvas id="lineChart10" height="300"></canvas>
-                                </div>
-                                <div class="col">
-                                    <p>Uniform</p>
-                                    <canvas id="lineChart11" height="300"></canvas>
-                                </div>
-                                <div class="col">
-                                    <p>Circumference</p>
-                                    <canvas id="lineChart12" height="300"></canvas>
-                                </div>
+                        <div class="container" data-background-color="aquamarine">
+                            <div class="col">
+                                <p>Normal</p>
+                                <canvas id="lineChart10" height="300"></canvas>
+                            </div>
+                            <div class="col">
+                                <p>Uniform</p>
+                                <canvas id="lineChart11" height="300"></canvas>
+                            </div>
+                            <div class="col">
+                                <p>Circumference</p>
+                                <canvas id="lineChart12" height="300"></canvas>
                             </div>
                         </div>
-                        <img src="assets/images/legend01c.png" alt="Legend" width="900"/>
-                        <p style="text-align: center; font-size:70%"><b>Figure:</b> 
-                            Speedup filter over the cpu_euclidean filter.</p>
+                        <div id="legend-lineChart10" style="text-align: center;"></div>
                         <script>
-                            // Crear los tres gráficos
-                            createLineChart('lineChart10', 'assets/data/2d_filter_normal.csv', colorsObject, ['thrust_copy', 'gpu_scan', 'cub_flagged', 'thrust_scan', 'cpu_manhattan']);
-                            createLineChart('lineChart11', 'assets/data/2d_filter_uniform.csv', colorsObject, ['thrust_copy', 'gpu_scan', 'cub_flagged', 'thrust_scan', 'cpu_manhattan']);
-                            createLineChart('lineChart12', 'assets/data/2d_filter_circumference.csv', colorsObject, ['thrust_copy', 'gpu_scan', 'cub_flagged', 'thrust_scan', 'cpu_manhattan']);
+                                createLineChart2('lineChart10', 'assets/data/2d_filter_normal.csv', colorsObject, ['thrust_copy', 'gpu_scan', 'cub_flagged', 'thrust_scan', 'cpu_manhattan'],'legend-lineChart10');
+                                createLineChart2('lineChart11', 'assets/data/2d_filter_uniform.csv', colorsObject, ['thrust_copy', 'gpu_scan', 'cub_flagged', 'thrust_scan', 'cpu_manhattan']);
+                                createLineChart2('lineChart12', 'assets/data/2d_filter_circumference.csv', colorsObject, ['thrust_copy', 'gpu_scan', 'cub_flagged', 'thrust_scan', 'cpu_manhattan']);
                         </script>                    
                     </section>
                     
@@ -857,33 +922,28 @@
                     <section  data-transition="fade">
                         <h6 style="text-align: justify;">Objective 2: Develop GPU preprocessing filtering techniques in two dimensions for convex hull and compare their efficiency with the state-of-the-art.</h6>
                         <h4>Filtering Techniques Benchmark</h4>
-                        <div class="chart-container">
-                            <div class="container" data-background-color="aquamarine">
-                                <div class="col">
-                                    <p>Normal</p>
-                                    <canvas id="lineChart13" height="300"></canvas>
-                                </div>
-                                <div class="col">
-                                    <p>Uniform</p>
-                                    <canvas id="lineChart14" height="300"></canvas>
-                                </div>
-                                <div class="col">
-                                    <p>Circumference</p>
-                                    <canvas id="lineChart15" height="300"></canvas>
-                                </div>
+                        <div class="container" data-background-color="aquamarine">
+                            <div class="col">
+                                <p>Normal</p>
+                                <canvas id="lineChart13" height="300"></canvas>
+                            </div>
+                            <div class="col">
+                                <p>Uniform</p>
+                                <canvas id="lineChart14" height="300"></canvas>
+                            </div>
+                            <div class="col">
+                                <p>Circumference</p>
+                                <canvas id="lineChart15" height="300"></canvas>
                             </div>
                         </div>
-                        <img src="assets/images/legend01.png" alt="Legend" width="900"/>
-                        <p style="text-align: center; font-size:70%"><b>Figure:</b> 
-                            Speedup filter over the cpu_euclidean filter.</p>
+                        <div id="legend-lineChart13" style="text-align: center;"></div>
                         <script>
                             // Crear los tres gráficos
-                            createLineChart('lineChart13', 'assets/data/2d_filter_normal.csv', colorsObject, []);
-                            createLineChart('lineChart14', 'assets/data/2d_filter_uniform.csv', colorsObject, []);
-                            createLineChart('lineChart15', 'assets/data/2d_filter_circumference.csv', colorsObject, []);
+                            createLineChart2('lineChart13', 'assets/data/2d_filter_normal.csv', colorsObject, [], 'legend-lineChart13');
+                            createLineChart2('lineChart14', 'assets/data/2d_filter_uniform.csv', colorsObject, []);
+                            createLineChart2('lineChart15', 'assets/data/2d_filter_circumference.csv', colorsObject, []);
                         </script>  
                     </section>
-                </section>
 
                 <!-- Slide 29 -->
                 <section>
@@ -914,30 +974,26 @@
                     <section  data-transition="fade">
                         <h6 style="text-align: justify;">Objective 2: Develop GPU preprocessing filtering techniques in two dimensions for convex hull and compare their efficiency with the state-of-the-art.</h6>
                         <h4>Filtering + Convex Hull Algorithm Benchmark</h4>
-                        <div class="chart-container">
-                            <div class="container" data-background-color="aquamarine">
-                                <div class="col">
-                                    <p>Normal</p>
-                                    <canvas id="experiment2a1" height="300"></canvas>
-                                </div>
-                                <div class="col">
-                                    <p>Uniform</p>
-                                    <canvas id="experiment2b1" height="300"></canvas>
-                                </div>
-                                <div class="col">
-                                    <p>Circumference</p>
-                                    <canvas id="experiment2c1" height="300"></canvas>
-                                </div>
+                        <div class="container" data-background-color="aquamarine">
+                            <div class="col">
+                                <p>Normal</p>
+                                <canvas id="experiment2a1" height="300"></canvas>
+                            </div>
+                            <div class="col">
+                                <p>Uniform</p>
+                                <canvas id="experiment2b1" height="300"></canvas>
+                            </div>
+                            <div class="col">
+                                <p>Circumference</p>
+                                <canvas id="experiment2c1" height="300"></canvas>
                             </div>
                         </div>
-                        <img src="assets/images/legend02.png" alt="Legend" width="900"/>
-                        <p style="text-align: center; font-size:70%"><b>Figure:</b> 
-                            Speedup of our fastest filters + CGAL:convex_hull_2 over CGAL:convex_hull_2.</p>
+                        <div id="legend-experiment2a1" style="text-align: center;"></div>
                         <script>
                             // Crear los tres gráficos
-                            createLineChart('experiment2a1', 'assets/data/2d_filter_ch_normal.csv', colorsObject, []);
-                            createLineChart('experiment2b1', 'assets/data/2d_filter_ch_uniform.csv', colorsObject, []);
-                            createLineChart('experiment2c1', 'assets/data/2d_filter_ch_circumference.csv', colorsObject, []);
+                            createLineChart2('experiment2a1', 'assets/data/2d_filter_ch_normal.csv', colorsObject, [], 'legend-experiment2a1');
+                            createLineChart2('experiment2b1', 'assets/data/2d_filter_ch_uniform.csv', colorsObject, []);
+                            createLineChart2('experiment2c1', 'assets/data/2d_filter_ch_circumference.csv', colorsObject, []);
                         </script>  
                     </section>
 
@@ -945,30 +1001,26 @@
                     <section  data-transition="fade">
                         <h6 style="text-align: justify;">Objective 2: Develop GPU preprocessing filtering techniques in two dimensions for convex hull and compare their efficiency with the state-of-the-art.</h6>
                         <h4>Filtering + Convex Hull Algorithm Benchmark</h4>
-                        <div class="chart-container">
-                            <div class="container" data-background-color="aquamarine">
-                                <div class="col">
-                                    <p>Normal</p>
-                                    <canvas id="experiment2a2" height="300"></canvas>
-                                </div>
-                                <div class="col">
-                                    <p>Uniform</p>
-                                    <canvas id="experiment2b2" height="300"></canvas>
-                                </div>
-                                <div class="col">
-                                    <p>Circumference</p>
-                                    <canvas id="experiment2c2" height="300"></canvas>
-                                </div>
+                        <div class="container" data-background-color="aquamarine">
+                            <div class="col">
+                                <p>Normal</p>
+                                <canvas id="experiment2a2" height="300"></canvas>
+                            </div>
+                            <div class="col">
+                                <p>Uniform</p>
+                                <canvas id="experiment2b2" height="300"></canvas>
+                            </div>
+                            <div class="col">
+                                <p>Circumference</p>
+                                <canvas id="experiment2c2" height="300"></canvas>
                             </div>
                         </div>
-                        <img src="assets/images/legend02.png" alt="Legend" width="900"/>
-                        <p style="text-align: center; font-size:70%"><b>Figure:</b> 
-                            Speedup of our fastest filters + CGAL:convex_hull_2 over CGAL:convex_hull_2.</p>
+                        <div id="legend-experiment2a2" style="text-align: center;"></div>
                         <script>
                             // Crear los tres gráficos
-                            createLineChart('experiment2a2', 'assets/data/2d_filter_ch_normal.csv', colorsObject, ['cpu_manhattan', 'gpu_scan', 'omp_manhattan', 'cudachain', 'qhull']);
-                            createLineChart('experiment2b2', 'assets/data/2d_filter_ch_uniform.csv', colorsObject, ['cpu_manhattan', 'gpu_scan', 'omp_manhattan', 'cudachain', 'qhull']);
-                            createLineChart('experiment2c2', 'assets/data/2d_filter_ch_circumference.csv', colorsObject, ['cpu_manhattan', 'gpu_scan', 'omp_manhattan', 'cudachain', 'qhull']);
+                            createLineChart2('experiment2a2', 'assets/data/2d_filter_ch_normal.csv', colorsObject, ['cpu_manhattan', 'gpu_scan', 'omp_manhattan', 'cudachain', 'qhull'], 'legend-experiment2a2');
+                            createLineChart2('experiment2b2', 'assets/data/2d_filter_ch_uniform.csv', colorsObject, ['cpu_manhattan', 'gpu_scan', 'omp_manhattan', 'cudachain', 'qhull']);
+                            createLineChart2('experiment2c2', 'assets/data/2d_filter_ch_circumference.csv', colorsObject, ['cpu_manhattan', 'gpu_scan', 'omp_manhattan', 'cudachain', 'qhull']);
                         </script>  
                     </section>
 
@@ -976,30 +1028,26 @@
                     <section  data-transition="fade">
                         <h6 style="text-align: justify;">Objective 2: Develop GPU preprocessing filtering techniques in two dimensions for convex hull and compare their efficiency with the state-of-the-art.</h6>
                         <h4>Filtering + Convex Hull Algorithm Benchmark</h4>
-                        <div class="chart-container">
-                            <div class="container" data-background-color="aquamarine">
-                                <div class="col">
-                                    <p>Normal</p>
-                                    <canvas id="experiment2a3" height="300"></canvas>
-                                </div>
-                                <div class="col">
-                                    <p>Uniform</p>
-                                    <canvas id="experiment2b3" height="300"></canvas>
-                                </div>
-                                <div class="col">
-                                    <p>Circumference</p>
-                                    <canvas id="experiment2c3" height="300"></canvas>
-                                </div>
+                        <div class="container" data-background-color="aquamarine">
+                            <div class="col">
+                                <p>Normal</p>
+                                <canvas id="experiment2a3" height="300"></canvas>
+                            </div>
+                            <div class="col">
+                                <p>Uniform</p>
+                                <canvas id="experiment2b3" height="300"></canvas>
+                            </div>
+                            <div class="col">
+                                <p>Circumference</p>
+                                <canvas id="experiment2c3" height="300"></canvas>
                             </div>
                         </div>
-                        <img src="assets/images/legend02.png" alt="Legend" width="900"/>
-                        <p style="text-align: center; font-size:70%"><b>Figure:</b> 
-                            Speedup of our fastest filters + CGAL:convex_hull_2 over CGAL:convex_hull_2.</p>
+                        <div id="legend-experiment2a3" style="text-align: center;"></div>
                         <script>
                             // Crear los tres gráficos
-                            createLineChart('experiment2a3', 'assets/data/2d_filter_ch_normal.csv', colorsObject, []);
-                            createLineChart('experiment2b3', 'assets/data/2d_filter_ch_uniform.csv', colorsObject, []);
-                            createLineChart('experiment2c3', 'assets/data/2d_filter_ch_circumference.csv', colorsObject, []);
+                            createLineChart2('experiment2a3', 'assets/data/2d_filter_ch_normal.csv', colorsObject, [], 'legend-experiment2a3');
+                            createLineChart2('experiment2b3', 'assets/data/2d_filter_ch_uniform.csv', colorsObject, []);
+                            createLineChart2('experiment2c3', 'assets/data/2d_filter_ch_circumference.csv', colorsObject, []);
                         </script>  
                     </section>
                 </section>
@@ -1019,12 +1067,10 @@
                     <div>
                         <canvas id="experiment3a" height="120"></canvas>
                     </div>
-                    <img src="assets/images/legend03.png" alt="Legend" width="800"/>
-                    <p style="text-align: justify; font-size:65%"><b>Figure:</b> 
-                        Speedup of the convex hull algorithm over CGAL:convex-hull-2 for a displaced circumference varying $\rho$ between [0, 0.3], and fixed size.</p>
+                    <div id="legend-experiment3a" style="text-align: center;"></div>
                     <script>
                         // Crear los tres gráficos
-                        createLineChart('experiment3a', 'assets/data/2d_prob_9.csv', colorsObject, []);
+                        createLineChart2('experiment3a', 'assets/data/2d_prob_9.csv', colorsObject, [], 'legend-experiment3a');
                     </script>                      
                     </section>
 
@@ -1048,30 +1094,26 @@
                 <section  data-transition="fade">
                         <h6>Objective 3: Improve the state-of-the-art on 3D filtering for convex hull algorithms both sequential and parallel and compare the performance of the new approaches with the state-of-the-art.</h6> 
                         <h4>Filtering Techniques Benchmark</h4>
-                        <div class="chart-container">
-                            <div class="container" data-background-color="aquamarine">
-                                <div class="col">
-                                    <p>Normal</p>
-                                    <canvas id="experiment4a1" height="250"></canvas>
-                                </div>
-                                <div class="col">
-                                    <p>Uniform</p>
-                                    <canvas id="experiment4b1" height="250"></canvas>
-                                </div>
-                                <div class="col">
-                                    <p>Sphere</p>
-                                    <canvas id="experiment4c1" height="250"></canvas>
-                                </div>
+                        <div class="container" data-background-color="aquamarine">
+                            <div class="col">
+                                <p>Normal</p>
+                                <canvas id="experiment4a1" height="250"></canvas>
+                            </div>
+                            <div class="col">
+                                <p>Uniform</p>
+                                <canvas id="experiment4b1" height="250"></canvas>
+                            </div>
+                            <div class="col">
+                                <p>Sphere</p>
+                                <canvas id="experiment4c1" height="250"></canvas>
                             </div>
                         </div>
-                        <img src="assets/images/legend04.png" alt="Legend" width="600"/>
-                        <p style="text-align: justify; font-size:70%"><b>Figure:</b> Speedup of filters using Euclidean and Manhattan distances as metrics
-                            to find extreme points in normal, uniform, and spherical distributions.</p>    
+                        <div id="legend04" style="text-align: center;"></div> 
                         <script>
                             // Crear los tres gráficos
-                            createLineChart('experiment4a1', 'assets/data/3d_filter_normal.csv', colors3DObject, []);
-                            createLineChart('experiment4b1', 'assets/data/3d_filter_uniform.csv', colors3DObject, []);
-                            createLineChart('experiment4c1', 'assets/data/3d_filter_sphere.csv', colors3DObject, []);
+                            createLineChart2('experiment4a1', 'assets/data/3d_filter_normal.csv', colors3DObject, [], 'legend04');
+                            createLineChart2('experiment4b1', 'assets/data/3d_filter_uniform.csv', colors3DObject, []);
+                            createLineChart2('experiment4c1', 'assets/data/3d_filter_sphere.csv', colors3DObject, []);
                         </script>  
                     </section>
                 </section>
@@ -1081,31 +1123,26 @@
                     <section  data-transition="fade">                    
                         <h6>Objective 3: Improve the state-of-the-art on 3D filtering for convex hull algorithms both sequential and parallel and compare the performance of the new approaches with the state-of-the-art.</h6> 
                         <h4>Filtering + Convex Hull Algorithm Benchmark</h4>
-                        <div class="chart-container">
-                            <div class="container" data-background-color="aquamarine">
-                                <div class="col">
-                                    <p>Normal</p>
-                                    <canvas id="experiment5a1" height="250"></canvas>
-                                </div>
-                                <div class="col">
-                                    <p>Uniform</p>
-                                    <canvas id="experiment5b1" height="250"></canvas>
-                                </div>
-                                <div class="col">
-                                    <p>Sphere</p>
-                                    <canvas id="experiment5c1" height="250"></canvas>
-                                </div>
+                        <div class="container" data-background-color="aquamarine">
+                            <div class="col">
+                                <p>Normal</p>
+                                <canvas id="experiment5a1" height="250"></canvas>
+                            </div>
+                            <div class="col">
+                                <p>Uniform</p>
+                                <canvas id="experiment5b1" height="250"></canvas>
+                            </div>
+                            <div class="col">
+                                <p>Sphere</p>
+                                <canvas id="experiment5c1" height="250"></canvas>
                             </div>
                         </div>
-                        <img src="assets/images/legend05.png" alt="Legend" width="700"/>
-                        <p style="text-align: justify; font-size:70%"><b>Figure:</b> Speedup to compute the convex hull using a preprocessing step, using
-                            the CGAL library for the hull computation, on normal, uniform, and spherical
-                            distributions</p>  
+                        <div id="legend05" style="text-align: center;"></div>
                         <script>
                             // Crear los tres gráficos
-                            createLineChart('experiment5a1', 'assets/data/3d_filter_ch_normal.csv', colors3DObject, []);
-                            createLineChart('experiment5b1', 'assets/data/3d_filter_ch_uniform.csv', colors3DObject, []);
-                            createLineChart('experiment5c1', 'assets/data/3d_filter_ch_sphere.csv', colors3DObject, []);
+                            createLineChart2('experiment5a1', 'assets/data/3d_filter_ch_normal.csv', colors3DObject, [], 'legend05');
+                            createLineChart2('experiment5b1', 'assets/data/3d_filter_ch_uniform.csv', colors3DObject, []);
+                            createLineChart2('experiment5c1', 'assets/data/3d_filter_ch_sphere.csv', colors3DObject, []);
                         </script>  
                     </section>
                 </section>
@@ -1225,7 +1262,34 @@
                     <h1>Thanks!</h1>
                 </section>
           
-                
+            <section data-transition="fade">
+                <h6 style="text-align: justify;">Objective 2: Develop GPU preprocessing filtering techniques in two dimensions for convex hull and compare their efficiency with the state-of-the-art.</h6>
+                <h4>Filtering Techniques Benchmark</h4>
+                <div class="container" data-background-color="aquamarine">
+                    <div class="col">
+                        <p>Normal</p>
+                        <canvas id="lineChart40" height="300"></canvas>
+                    </div>
+                    <div class="col">
+                        <p>Uniform</p>  
+                        <canvas id="lineChart50" height="300"></canvas>
+                    </div>
+                    <div class="col">
+                        <p>Circumference</p>
+                        <canvas id="lineChart60" height="300"></canvas>
+                    </div>
+                </div>
+                <div id="legend-container" style="text-align: center;"></div>
+                <p style="text-align: center; font-size:70%"><b>Figure:</b> Speedup filter over the cpu_euclidean filter.</p> 
+                <script>
+                    document.addEventListener('DOMContentLoaded', function() {                       
+                        // Initialize the charts
+                        createLineChart2('lineChart40', 'assets/data/2d_filter_normal.csv', colorsObject, ['omp_euclidean', 'omp_manhattan', 'cub_flagged', 'thrust_scan', 'gpu_scan'], 'legend-container');
+                        createLineChart2('lineChart50', 'assets/data/2d_filter_uniform.csv', colorsObject, ['omp_euclidean', 'omp_manhattan', 'cub_flagged', 'thrust_scan', 'gpu_scan']);
+                        createLineChart2('lineChart60', 'assets/data/2d_filter_circumference.csv', colorsObject, ['omp_euclidean', 'omp_manhattan', 'cub_flagged', 'thrust_scan', 'gpu_scan']);
+                    });
+                </script>                
+            </section>
         </div>
     </div>
 
@@ -1260,7 +1324,7 @@
                 selectby: "id",      
                 barhtml: { 
                     //header: '<div class="menubar"><img class="logo" src="assets/images/logobw.png" width="50"></a><ul class="menu"></ul><div class="slide-number"></div></div>',
-                    footer: "<div class='menubar' style='background-color: #ffffff;'><ul class='menu'></ul><div class='slide-number'></div></div>"
+                    header: "<div class='menubar' style='background-color: #ffffff;'><ul class='menu'></ul><div class='slide-number'></div></div>"
                 },                
                 csspath: "" // "css/mycustomstyle.css"
             },
