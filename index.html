@@ -537,7 +537,7 @@
                         </div>
                         <div class="col">
                             <ul>
-                                <li>Parallel Quick Hull [1]</li>
+                                <li>Parallel Quick Hull [1] (Figure)</li>
                                 <li>ParGeo: A Library for Parallel Computational Geometry [2] </li>
                                 <li>Randomized incremental algorithms [3]</li>
                             </ul>
@@ -564,7 +564,7 @@
                         </div>
                         <div class="col">                           
                             <ul>
-                                <li>Cudachpre2d [1]</li>
+                                <li>Cudachpre2d [1] (Figure 1)</li>
                                 <li>Cudachain [2] </li>
                                 <li>Cudahull [3]</li>
                             </ul>
@@ -986,7 +986,7 @@
                                     <li>CGAL:convex_hull_2</li>
                                     <li>CGAL:graham_andrew</li>
                                     <li>Qhull</li>
-                                    <li>cudachain</li>
+                                    <li>cudachain [1]</li>
                                 </ol>
                             </div>
                             <div class="col">
@@ -994,6 +994,7 @@
                             </div>
                         </div>
                     </div>
+                    <p style="font-size: 80%; text-align: left;">[1] Mei, G. CudaChain: an alternative algorithm for finding 2D convex hulls on the GPU. SpringerPlus 5, 696 (2016). https://doi.org/10.1186/s40064-016-2284-4</p>
                 </section>
 
 
@@ -1119,7 +1120,7 @@
                <!-- /section -->
                <section>
                 <section  data-transition="fade">
-                        <h6>Objective 3: Improve the state-of-the-art on 3D filtering for convex hull algorithms both sequential and parallel and compare the performance of the new approaches with the state-of-the-art.</h6> 
+                        <h6 style="text-align: justify;">Objective 3: Improve the state-of-the-art on 3D filtering for convex hull algorithms both sequential and parallel and compare the performance of the new approaches with the state-of-the-art.</h6> 
                         <h4>Filtering Techniques Benchmark</h4>
                         <div class="container" data-background-color="aquamarine">
                             <div class="col">
@@ -1147,8 +1148,8 @@
 
                 <!-- /section -->
                 <section>
-                    <section  data-transition="fade">                    
-                        <h6>Objective 3: Improve the state-of-the-art on 3D filtering for convex hull algorithms both sequential and parallel and compare the performance of the new approaches with the state-of-the-art.</h6> 
+                    <section data-transition="fade">                    
+                        <h6 style="text-align: justify;">Objective 3: Improve the state-of-the-art on 3D filtering for convex hull algorithms both sequential and parallel and compare the performance of the new approaches with the state-of-the-art.</h6> 
                         <h4>Filtering + Convex Hull Algorithm Benchmark</h4>
                         <div class="container" data-background-color="aquamarine">
                             <div class="col">
@@ -1186,23 +1187,37 @@
 
                 <!-- Slide 41 -->
                 <section>
-                    <h3>Objective 4: Evaluate contributions of the proposed algorithms at generating Delaunay triangulations and handling dynamic scenarios.</h3>
-                    <div class="chart-container">
-                        <div class="container" data-background-color="aquamarine" style="display: flex; align-items: center;">
-                            <div class="col">
-                                <img src="assets/images/pikachu.png"/>
-                            </div>
-                            <div class="col">
-                                <ul>
-                                    <li>GPU polygonal meshing algorithm (GPolylla)</li>
-                                    <li>$89 \times$ faster than CPU Polylla</li>
-                                </ul>
-                            </div>
+                    <h3 style="text-align: justify;">Objective 4: Evaluate contributions of the proposed algorithms at generating Delaunay triangulations and handling dynamic scenarios.</h3>
+                    <div class="container" data-background-color="aquamarine" style="display: flex; align-items: center;">
+                        <div class="col">
+                            <img src="assets/images/pikachu.png"/>
+                        </div>
+                        <div class="col">
+                            <ul>
+                                <li>GPU polygonal meshing algorithm (GPolylla)</li>
+                                <li>$89 \times$ faster than CPU Polylla</li>
+                            </ul>
                         </div>
                     </div>
                     <!-- Content for Objective 4  -->            
                 </section>
             
+                <!-- Slide 41 -->
+                <section>
+                    <h3 style="text-align: justify;">Objective 4: Evaluate contributions of the proposed algorithms at generating Delaunay triangulations and handling dynamic scenarios.</h3>
+                    <h4>FMM using TC at George Washington University</h4>
+                    <p> $6.7 \times$ over CPU implementation</p>
+                    <div class="container" data-background-color="aquamarine" style="display: flex; align-items: center;">
+                        <div class="col">
+                            <img src="assets/images/fmm_plot.png"/>
+                        </div>
+                        <div class="col">
+                            <img src="assets/images/map.png"/>
+                        </div>
+                    </div>
+                    <!-- Content for Objective 4  -->            
+                </section>
+
                 <!-- Slide 42 -->
                 <section data-name="Summary">
                     <h2>Summary of my work</h2>
