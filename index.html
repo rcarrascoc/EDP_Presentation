@@ -141,7 +141,7 @@
                 });
             }
 
-            function createLineChart2(canvasId, csvFilePath, colorsObject, exceptionsArray, sharedLegendId) {
+            function createLineChart2(canvasId, csvFilePath, colorsObject, exceptionsArray, sharedLegendId, name_axis="# Points") {
                 Papa.parse(csvFilePath, {
                     download: true,
                     header: true,
@@ -160,7 +160,12 @@
                                 pointRadius: 0 
                             };
                         });
-            
+
+                        var axis_y = "";
+                        if(sharedLegendId) {
+                            axis_y = "Speedup";
+                        }
+
                         var ctx = document.getElementById(canvasId).getContext('2d');
                         var chart = new Chart(ctx, {
                             type: 'line',
@@ -172,7 +177,7 @@
                                         grid: { display: false },
                                         title: {
                                             display: true,
-                                            text: 'Speedup',
+                                            text: axis_y,
                                             font: { size: 20 }
                                         }
                                     },
@@ -180,7 +185,7 @@
                                         grid: { display: false },
                                         title: {
                                             display: true,
-                                            text: '# Points',
+                                            text: name_axis,
                                             font: { size: 20 }
                                         }
                                     }
@@ -295,14 +300,14 @@
                         </div>
                     </div>
                     <div style="text-align: left; flex: 1; display: flex; flex-direction: column; justify-content: center;">
-                        <h4>Developed by</h4>
+                        <h4></h4>
                         <div style="display: flex; align-items: center; height: 100%;">
                             <img src="assets/images/logobw.png" alt="Imagen 4" style="max-width: 100px; margin: 10px;">
                             <img src="assets/images/temporal.png" alt="Imagen 5" style="max-width: 150px; margin: 0px;">
                         </div>
                     </div>
                     <div style="text-align: left; flex: 1; display: flex; flex-direction: column; justify-content: center;">
-                        <h4>University of</h4>
+                        <h4></h4>
                         <div style="display: flex; align-items: center; height: 100%;">
                             <img src="assets/images/dcc_2019_cuadrado_blanco.png" alt="Imagen 6" style="max-width: 200px; margin: 0px;">
                         </div>
@@ -355,34 +360,35 @@
                     </div>
                 </section>
             
-                <!-- Slide 4 -->
-                <section data-name="Basic concepts">
-                    <h2>Basic Concepts</h2>
-                    <ol>
-                        <li>Convexity</li>
-                        <li>Convex Hull Algorithms</li>
-                        <li>Preprocessing</li>
-                        <li>Sign Area/Volumen</li>
-                        <li>GPU Features</li>
-                        <li>GPU Programming</li>
-                    </ol>
-                </section>
-
-                
-                <!-- Slide 4 -->
                 <section>
-                    <h3>Convexity</h3>
-                    <div class="container">
-                        <!-- Images for GPU -->
-                        <div class="col" >
-                            <img src="assets/images/convex.png" alt="CUDA" width="500"/>
+                    <!-- Slide 4 -->
+                    <section data-name="Basic concepts">
+                        <h2>Basic Concepts</h2>
+                        <ol>
+                            <li>Convex Hull Algorithms</li>
+                            <li>Preprocessing</li>
+                            <li>Sign Area/Volumen</li>
+                            <li>GPU Features</li>
+                            <li>GPU Programming</li>
+                        </ol>
+                    </section>
+
+                    
+                    <!-- Slide 4 -->
+                    <section>
+                        <h3>Convexity</h3>
+                        <div class="container">
+                            <!-- Images for GPU -->
+                            <div class="col" >
+                                <img src="assets/images/convex.png" alt="CUDA" width="500"/>
+                            </div>
+                            <div class="col" style="display: flex; align-items: center;">
+                                <p>
+                                A set S of the plane is called convex if and only if for any pair of points $p,q \in S$ the line segment $pq$ is completely contained in $S$.
+                                </p>
+                            </div>
                         </div>
-                        <div class="col" style="display: flex; align-items: center;">
-                            <p>
-                            A set S of the plane is called convex if and only if for any pair of points $p,q \in S$ the line segment $pq$ is completely contained in $S$.
-                            </p>
-                        </div>
-                    </div>
+                    </section>
                 </section>
 
 				<!-- Slide 5 -->
@@ -473,6 +479,25 @@
                     </div>
                 </section>
             
+                <!-- Slide 8 -->
+                <section data-background-color="black" data-state="stats" data-name="Problem statement">
+                    <h2>Problem statement</h2>
+                    <!-- Content for Problem statement -->
+                    <div class="container" style="display: flex; align-items: center;">
+                        <!-- Images for GPU -->
+                        <div class="col">
+                            <video data-autoplay src="assets/videos/GrahamScan.mp4"></video>
+                            <p>non-filtered</p>
+                        </div>
+                        <div class="col">
+                            <video data-autoplay src="assets/videos/GrahamScan_candidates"></video>
+                            <p>filtered</p>
+                        </div>
+                    </div>
+                    <!-- Display the countdown timer in an element -->
+                    <!-- p id="demo"></p -->
+                </section>
+
                 <section data-name="Related Works">
                     <h2>Related Works</h2>
                     <ul>
@@ -556,29 +581,11 @@
                     </ul>
                 </section>
 
-                <!-- Slide 8 -->
-                <section data-background-color="black" data-state="stats" data-name="Problem statement">
-                    <h2>Problem statement</h2>
-                    <!-- Content for Problem statement -->
-                    <div class="container" style="display: flex; align-items: center;">
-                        <!-- Images for GPU -->
-                        <div class="col">
-                            <video data-autoplay src="assets/videos/GrahamScan.mp4"></video>
-                            <p>non-prepocessed</p>
-                        </div>
-                        <div class="col">
-                            <video data-autoplay src="assets/videos/GrahamScan_candidates"></video>
-                            <p>prepocessed</p>
-                        </div>
-                    </div>
-                    <!-- Display the countdown timer in an element -->
-                    <!-- p id="demo"></p -->
-                </section>
             
 
                 <!-- Slide 13 -->
-                <section data-name="Algorithm">
-                    <h2>Algorithm</h2>
+                <section data-name="My Proposed GPU Algorithm">
+                    <h2>My Proposed GPU Algorithm</h2>
                     <ol type="1">
                         <li>Finding an approximate hull</li>
                         <li>Extracting candidate points</li>
@@ -616,13 +623,13 @@
             
                 <!-- Slide 18 -->
                 <section>
-                    <h3>2. Extracting Candidate Points</h3>                    
+                    <h3>2. Extracting Candidate Points To Extreme Points</h3>                    
                     <div class="container" style="display: flex; align-items: center;">
                         <!-- Images for Finding the polygon/polyhedron -->
                         <div class="col">
                             <ul>
-                                <li>Determine whether the point is a candidate</li>
-                                <li>Compacting the output array</li>
+                                <li>Determine whether the point is a candidate to hull</li>
+                                <li>Compacting the output array with only the candidates</li>
                             </ul>
                         </div>
                         <div class="col">
@@ -635,6 +642,7 @@
                 <section data-background-color="black">
                     <h3>3. Computing The Convex Hull From The Candidate Points</h3>
                     <video data-autoplay src="assets/videos/GrahamScan_candidates"></video>  
+                    <p style="align-text: center;" >We can use any state-of-the-art for computing the hull</p>
                 </section>
                         
                 <!-- Slide 20 -->
@@ -648,10 +656,31 @@
                 </section>
 
                 <!-- Slide 9 -->
-                <section data-name="Hypotheses and goal">
-                    <h2>Hypotheses and goal</h2>
+                <section data-name="Research Fundations">
+                    <h2>Research Fundations</h2>
                 </section>
                     
+                <section>
+                    <h3>Research questions</h3>
+                    <ul>
+                        <li>RQ 1: Can we take advantage of the new features of modern GPUs to accelerate convex hull
+                            algorithms?
+                        </li>
+                        <li>
+                            RQ 2: Can we extend the current two dimensions of convex hull pre-processing algorithms
+                            to three or more dimensions?
+                        </li>
+                        <li>
+                            RQ 3: How much is it possible to speed up the calculation of the convex hull by including a
+                            preprocessing stage on GPU to filter the input points?
+                        </li>
+                        <li>
+                            RQ 4: Is it possible to use pre-processing filtering that allows online insertion points in
+                            GPU-based convex hulls?
+                        </li>
+                    </ul>
+                </section>
+
                 <!-- Slide 10 -->
                 <section>
                     <h3>Hypotheses</h3>
@@ -969,87 +998,85 @@
 
 
                 <!-- Double /section to separate slides -->
-                <section>
-                    <!-- /section -->
-                    <section  data-transition="fade">
-                        <h6 style="text-align: justify;">Objective 2: Develop GPU preprocessing filtering techniques in two dimensions for convex hull and compare their efficiency with the state-of-the-art.</h6>
-                        <h4>Filtering + Convex Hull Algorithm Benchmark</h4>
-                        <div class="container" data-background-color="aquamarine">
-                            <div class="col">
-                                <p>Normal</p>
-                                <canvas id="experiment2a1" height="300"></canvas>
-                            </div>
-                            <div class="col">
-                                <p>Uniform</p>
-                                <canvas id="experiment2b1" height="300"></canvas>
-                            </div>
-                            <div class="col">
-                                <p>Circumference</p>
-                                <canvas id="experiment2c1" height="300"></canvas>
-                            </div>
+                <!-- /section -->
+                <section  data-transition="fade">
+                    <h6 style="text-align: justify;">Objective 2: Develop GPU preprocessing filtering techniques in two dimensions for convex hull and compare their efficiency with the state-of-the-art.</h6>
+                    <h4>Filtering + Convex Hull Algorithm Benchmark</h4>
+                    <div class="container" data-background-color="aquamarine">
+                        <div class="col">
+                            <p>Normal</p>
+                            <canvas id="experiment2a1" height="300"></canvas>
                         </div>
-                        <div id="legend-experiment2a1" style="text-align: center;"></div>
-                        <script>
-                            // Crear los tres gráficos
-                            createLineChart2('experiment2a1', 'assets/data/2d_filter_ch_normal.csv', colorsObject, [], 'legend-experiment2a1');
-                            createLineChart2('experiment2b1', 'assets/data/2d_filter_ch_uniform.csv', colorsObject, []);
-                            createLineChart2('experiment2c1', 'assets/data/2d_filter_ch_circumference.csv', colorsObject, []);
-                        </script>  
-                    </section>
+                        <div class="col">
+                            <p>Uniform</p>
+                            <canvas id="experiment2b1" height="300"></canvas>
+                        </div>
+                        <div class="col">
+                            <p>Circumference</p>
+                            <canvas id="experiment2c1" height="300"></canvas>
+                        </div>
+                    </div>
+                    <div id="legend-experiment2a1" style="text-align: center;"></div>
+                    <script>
+                        // Crear los tres gráficos
+                        createLineChart2('experiment2a1', 'assets/data/2d_filter_ch_normal.csv', colorsObject, [], 'legend-experiment2a1');
+                        createLineChart2('experiment2b1', 'assets/data/2d_filter_ch_uniform.csv', colorsObject, []);
+                        createLineChart2('experiment2c1', 'assets/data/2d_filter_ch_circumference.csv', colorsObject, []);
+                    </script>  
+                </section>
 
-                    <!-- /section -->
-                    <section  data-transition="fade">
-                        <h6 style="text-align: justify;">Objective 2: Develop GPU preprocessing filtering techniques in two dimensions for convex hull and compare their efficiency with the state-of-the-art.</h6>
-                        <h4>Filtering + Convex Hull Algorithm Benchmark</h4>
-                        <div class="container" data-background-color="aquamarine">
-                            <div class="col">
-                                <p>Normal</p>
-                                <canvas id="experiment2a2" height="300"></canvas>
-                            </div>
-                            <div class="col">
-                                <p>Uniform</p>
-                                <canvas id="experiment2b2" height="300"></canvas>
-                            </div>
-                            <div class="col">
-                                <p>Circumference</p>
-                                <canvas id="experiment2c2" height="300"></canvas>
-                            </div>
+                <!-- /section -->
+                <section  data-transition="fade">
+                    <h6 style="text-align: justify;">Objective 2: Develop GPU preprocessing filtering techniques in two dimensions for convex hull and compare their efficiency with the state-of-the-art.</h6>
+                    <h4>Filtering + Convex Hull Algorithm Benchmark</h4>
+                    <div class="container" data-background-color="aquamarine">
+                        <div class="col">
+                            <p>Normal</p>
+                            <canvas id="experiment2a2" height="300"></canvas>
                         </div>
-                        <div id="legend-experiment2a2" style="text-align: center;"></div>
-                        <script>
-                            // Crear los tres gráficos
-                            createLineChart2('experiment2a2', 'assets/data/2d_filter_ch_normal.csv', colorsObject, ['cpu_manhattan', 'gpu_scan', 'omp_manhattan', 'cudachain', 'qhull'], 'legend-experiment2a2');
-                            createLineChart2('experiment2b2', 'assets/data/2d_filter_ch_uniform.csv', colorsObject, ['cpu_manhattan', 'gpu_scan', 'omp_manhattan', 'cudachain', 'qhull']);
-                            createLineChart2('experiment2c2', 'assets/data/2d_filter_ch_circumference.csv', colorsObject, ['cpu_manhattan', 'gpu_scan', 'omp_manhattan', 'cudachain', 'qhull']);
-                        </script>  
-                    </section>
+                        <div class="col">
+                            <p>Uniform</p>
+                            <canvas id="experiment2b2" height="300"></canvas>
+                        </div>
+                        <div class="col">
+                            <p>Circumference</p>
+                            <canvas id="experiment2c2" height="300"></canvas>
+                        </div>
+                    </div>
+                    <div id="legend-experiment2a2" style="text-align: center;"></div>
+                    <script>
+                        // Crear los tres gráficos
+                        createLineChart2('experiment2a2', 'assets/data/2d_filter_ch_normal.csv', colorsObject, ['cpu_manhattan', 'gpu_scan', 'omp_manhattan', 'cudachain', 'qhull'], 'legend-experiment2a2');
+                        createLineChart2('experiment2b2', 'assets/data/2d_filter_ch_uniform.csv', colorsObject, ['cpu_manhattan', 'gpu_scan', 'omp_manhattan', 'cudachain', 'qhull']);
+                        createLineChart2('experiment2c2', 'assets/data/2d_filter_ch_circumference.csv', colorsObject, ['cpu_manhattan', 'gpu_scan', 'omp_manhattan', 'cudachain', 'qhull']);
+                    </script>  
+                </section>
 
-                    <!-- /section -->
-                    <section  data-transition="fade">
-                        <h6 style="text-align: justify;">Objective 2: Develop GPU preprocessing filtering techniques in two dimensions for convex hull and compare their efficiency with the state-of-the-art.</h6>
-                        <h4>Filtering + Convex Hull Algorithm Benchmark</h4>
-                        <div class="container" data-background-color="aquamarine">
-                            <div class="col">
-                                <p>Normal</p>
-                                <canvas id="experiment2a3" height="300"></canvas>
-                            </div>
-                            <div class="col">
-                                <p>Uniform</p>
-                                <canvas id="experiment2b3" height="300"></canvas>
-                            </div>
-                            <div class="col">
-                                <p>Circumference</p>
-                                <canvas id="experiment2c3" height="300"></canvas>
-                            </div>
+                <!-- /section -->
+                <section  data-transition="fade">
+                    <h6 style="text-align: justify;">Objective 2: Develop GPU preprocessing filtering techniques in two dimensions for convex hull and compare their efficiency with the state-of-the-art.</h6>
+                    <h4>Filtering + Convex Hull Algorithm Benchmark</h4>
+                    <div class="container" data-background-color="aquamarine">
+                        <div class="col">
+                            <p>Normal</p>
+                            <canvas id="experiment2a3" height="300"></canvas>
                         </div>
-                        <div id="legend-experiment2a3" style="text-align: center;"></div>
-                        <script>
-                            // Crear los tres gráficos
-                            createLineChart2('experiment2a3', 'assets/data/2d_filter_ch_normal.csv', colorsObject, [], 'legend-experiment2a3');
-                            createLineChart2('experiment2b3', 'assets/data/2d_filter_ch_uniform.csv', colorsObject, []);
-                            createLineChart2('experiment2c3', 'assets/data/2d_filter_ch_circumference.csv', colorsObject, []);
-                        </script>  
-                    </section>
+                        <div class="col">
+                            <p>Uniform</p>
+                            <canvas id="experiment2b3" height="300"></canvas>
+                        </div>
+                        <div class="col">
+                            <p>Circumference</p>
+                            <canvas id="experiment2c3" height="300"></canvas>
+                        </div>
+                    </div>
+                    <div id="legend-experiment2a3" style="text-align: center;"></div>
+                    <script>
+                        // Crear los tres gráficos
+                        createLineChart2('experiment2a3', 'assets/data/2d_filter_ch_normal.csv', colorsObject, [], 'legend-experiment2a3');
+                        createLineChart2('experiment2b3', 'assets/data/2d_filter_ch_uniform.csv', colorsObject, []);
+                        createLineChart2('experiment2c3', 'assets/data/2d_filter_ch_circumference.csv', colorsObject, []);
+                    </script>  
                 </section>
 
                 <!-- Slide 31 -->
@@ -1070,7 +1097,7 @@
                     <div id="legend-experiment3a" style="text-align: center;"></div>
                     <script>
                         // Crear los tres gráficos
-                        createLineChart2('experiment3a', 'assets/data/2d_prob_9.csv', colorsObject, [], 'legend-experiment3a');
+                        createLineChart2('experiment3a', 'assets/data/2d_prob_9.csv', colorsObject, [], 'legend-experiment3a', 'rho');
                     </script>                      
                     </section>
 
@@ -1178,7 +1205,7 @@
             
                 <!-- Slide 42 -->
                 <section data-name="Summary">
-                    <h2>Summary</h2>
+                    <h2>Summary of my work</h2>
                     <div class="container" data-background-color="aquamarine">
                         <div class="col">
                             <ul>
